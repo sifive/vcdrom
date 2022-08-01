@@ -82,7 +82,7 @@
 }
 .confirm {
   position: absolute;
-  color: white;
+  /* color: white; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -91,10 +91,12 @@
   max-width: 500px;
   height: auto;
   background-color: rgb(262, 63, 78);
+  opacity: 0.9;
   border-radius: 48px;
   padding: 0;
   margin: 0;
-  border-top: 1px solid white;
+  border: 1px solid black;
+  /* border-top: 1px solid white; */
   animation: fade 1s ease 1 forwards;
 }
 .confirm h1 {
@@ -120,12 +122,14 @@
   transition: ease-in-out;
 }
 .confirm button:nth-of-type(1) {
-  border-top: 2px solid #b4b4b4;
-  border-right: 2px solid #b4b4b4;
+  border-top: 2px solid #111111;
+  border-right: 2px solid #111111;
   left: 0;
   border-radius: 0 0 0 48px;
 }
 .confirm button:nth-of-type(2) {
+  border-top: 2px solid #111111;
+  border-right: 2px solid #111111;
   border-top: 2px solid #b4b4b4;
   right: 0;
   border-radius: 0 0 48px 0;
