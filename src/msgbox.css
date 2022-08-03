@@ -95,7 +95,6 @@
 }
 .confirm {
   position: absolute;
-  /* color: white; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -124,30 +123,30 @@
   margin: 0 2rem 4.5rem;
 }
 .confirm button {
-  background: transparent;
+  background: rgb(262, 63, 78);
+  margin: 8px;
   border: none;
   color: white;
   height: 3rem;
   font-size: 1rem;
-  width: 50%;
+  width: 48%;
   position: absolute;
   bottom: 0;
   cursor: pointer;
   transition: ease-in-out;
+  border-radius: 48px;
 }
 .confirm button:nth-of-type(1) {
-  border-top: 2px solid #111111;
-  border-right: 2px solid #111111;
-  border-top: 3px solid rgb(262, 63, 78);
+  /* border-top: 2px solid #111111; */
+  border-right: 2px solid black;
+  /* border-top: 3px solid rgb(262, 63, 78); */
   left: 0;
-  border-radius: 0 0 0 48px;
 }
 .confirm button:nth-of-type(2) {
-  border-top: 2px solid #111111;
-  border-right: 2px solid #111111;
-  border-top: 3px solid rgb(262, 63, 78);
+  /* border-top: 2px solid #111111; */
+  border-left: 2px solid black;
+  /* border-top: 3px solid rgb(262, 63, 78); */
   right: 0;
-  border-radius: 0 0 48px 0;
 }
 
 .confirm button:nth-of-type(1):hover {
