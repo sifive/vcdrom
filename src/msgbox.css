@@ -10,15 +10,15 @@
   vertical-align: middle;
   line-height: 30px; /* to ensure the text is centered*/
   position: absolute;
-  background-color: rgb(262, 63, 78);
   opacity: 0.9;
   text-align: center;
   justify-content: center;
   vertical-align: middle;
   line-height: 50px; /* to ensure the text is centered*/
+  background-color: #1f1f1f;
+  border: 3px solid rgb(262, 63, 78);
   color: rgb(229, 229, 229);
   border-radius: 48px;
-  border: 2px rgb(262, 63, 78);
 }
 
 /* button message */
@@ -27,45 +27,58 @@
   text-align: center;
 }
 /* ------ */
+
 /* X close message box */
-#messageBox1 {
+
+.outerBox {
   position: absolute;
-  display: inline-block;
-  /* display: none */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 100px;
   width: 250px;
-  height: 50px;
-  vertical-align: middle;
-  line-height: 30px; /* to ensure the text is centered*/
-  position: absolute;
-  background-color: rgb(262, 63, 78);
-  opacity: 0.9;
+  color: white;
+  background-color: #1f1f1f;
+  border-radius: 48px;
+  padding: 0;
+  margin: 0;
+  border: 3px solid rgb(262, 63, 78);
+}
+
+.close {
+  position: relative;
+  left: 79%;
+  bottom: 1%;
   text-align: center;
   justify-content: center;
   vertical-align: middle;
-  line-height: 50px; /* to ensure the text is centered*/
+  line-height: 25px; /* to ensure the text is centered*/
+  width: 25px;
+  height: 25px;
+  margin: 10px;
   color: rgb(229, 229, 229);
+  background-color: rgb(262, 63, 78);
   border-radius: 48px;
-  border: 2px rgb(262, 63, 78);
-}
-
-/* button message */
-.outer-box1 {
-  display: block;
-  text-align: center;
-}
-#close {
-  display: inline-block;
-  position: absolute;
-  left: 90%;
-  bottom: 20%;
+  border: 3px rgb(262, 63, 78);
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
-#close:hover {
-  color: #fff;
-  transform: scale(1.5);
+
+.bodyTextContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.close:hover {
+  background: lightgreen;
+  color: black;
+  transform: scale(1.1);
+}
+.close:active {
+  box-shadow: 7px 6px 28px 1px #1f1f1f;
+  transform: translateY(4px);
 }
 
 /* .DialogueBox */
@@ -96,7 +109,8 @@
   padding: 0;
   margin: 0;
   border: 1px solid black;
-  /* border-top: 1px solid white; */
+  background-color: #1f1f1f;
+  border: 3px solid rgb(262, 63, 78);
   animation: fade 1s ease 1 forwards;
 }
 .confirm h1 {
@@ -124,13 +138,14 @@
 .confirm button:nth-of-type(1) {
   border-top: 2px solid #111111;
   border-right: 2px solid #111111;
+  border-top: 3px solid rgb(262, 63, 78);
   left: 0;
   border-radius: 0 0 0 48px;
 }
 .confirm button:nth-of-type(2) {
   border-top: 2px solid #111111;
   border-right: 2px solid #111111;
-  border-top: 2px solid #b4b4b4;
+  border-top: 3px solid rgb(262, 63, 78);
   right: 0;
   border-radius: 0 0 48px 0;
 }
@@ -151,4 +166,83 @@
 }
 .confirm button:active {
   background: #279f2b;
+  box-shadow: 7px 6px 28px 1px #1f1f1f;
+  transform: translateY(4px);
+}
+
+/* input box */
+
+.inputText {
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  min-width: 280px;
+  max-width: 550px;
+  height: auto;
+  background-color: #1f1f1f;
+  border-radius: 48px;
+  padding: 0;
+  margin: 0;
+  border: 3px solid rgb(262, 63, 78);
+  animation: fade 1s ease 1 forwards;
+  display: flex;
+  flex-direction: column;
+}
+#ITitle {
+  position: relative;
+  left: 30px;
+}
+
+input[type='text'] {
+  width: 90%;
+  border: 2px solid #aaa;
+  left: 30px;
+  position: relative;
+  margin: 8px 0;
+  outline: none;
+  height: 37px;
+  /* padding: 8px; */
+  box-sizing: border-box;
+  transition: 0.3s;
+  /* border-radius: 48px; */
+}
+
+input[type='text']:focus {
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px 0 dodgerblue;
+}
+
+.buttons {
+  position: relative;
+  left: 300px;
+}
+.enterButton {
+  position: relative;
+  left: 50px;
+  width: 15%;
+  margin: 8px 0;
+  border-radius: 38px;
+  border: 2px solid #aaa;
+  background-color: rgb(262, 63, 78);
+  color: rgb(229, 229, 229);
+  bottom: 0;
+  cursor: pointer;
+  height: 37px;
+}
+
+.enterButton:nth-of-type(1):hover {
+  background: lightcoral;
+}
+
+.enterButton:nth-of-type(2):hover {
+  background: lightgreen;
+  color: black;
+}
+
+.enterButton:active {
+  box-shadow: 7px 6px 28px 1px #1f1f1f;
+  transform: translateY(4px);
 }
