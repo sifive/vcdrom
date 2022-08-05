@@ -17,6 +17,18 @@
   color: rgb(229, 229, 229);
   border-radius: 48px;
   border: 2px rgb(262, 63, 78);
+  cursor: pointer;
+}
+
+#helpButton:hover {
+  background-color: lightgreen;
+  color: black;
+}
+#helpButton:active {
+  background-color: rgb(202, 144, 238);
+  box-shadow: 7px 6px 28px 1px #1f1f1f;
+  transform: translateY(4px);
+  color: black;
 }
 
 #openDiv {
