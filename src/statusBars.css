@@ -34,6 +34,7 @@
   cursor: pointer;
 }
 .status > div {
+  z-index: 9999;
   height: 30px;
   width: 150px;
   vertical-align: middle;
