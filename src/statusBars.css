@@ -11,7 +11,7 @@
 }
 
 .status {
-  width: 2000px;
+  /* width: px; */
   height: 34px;
   vertical-align: middle;
   line-height: 30px; /* to ensure the text is centered*/
