@@ -184,6 +184,7 @@
   animation: fade 1s ease 1 forwards;
   display: flex;
   flex-direction: column;
+  z-index: 9999;
 }
 #ITitle {
   position: relative;
