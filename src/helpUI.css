@@ -4,7 +4,7 @@
 }
 
 #helpButton {
-  width: 275px;
+  width: 125px;
   z-index: 9999;
   height: 30px;
   vertical-align: middle;
@@ -48,7 +48,7 @@
 }
 
 #openDiv.show {
-  opacity: 0.8;
+  opacity: 0.95;
 }
 
 #openDiv.hide {
