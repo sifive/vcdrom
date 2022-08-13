@@ -11,7 +11,7 @@
 }
 
 .status {
-  width: 2000px;
+  /* width: px; */
   height: 34px;
   vertical-align: middle;
   line-height: 30px; /* to ensure the text is centered*/
@@ -31,8 +31,10 @@
   flex-wrap: wrap;
   z-index: 1000;
   user-select: none;
+  cursor: pointer;
 }
 .status > div {
+  z-index: 9999;
   height: 30px;
   width: 150px;
   vertical-align: middle;
@@ -42,4 +44,14 @@
   margin: 3px;
   border-radius: 48px;
   user-select: none;
+}
+.status > div:hover {
+  background-color: lightgreen;
+  color: black;
+}
+.status > div:active {
+  background-color: lightgreen;
+  box-shadow: 7px 6px 28px 1px #1f1f1f;
+  transform: translateY(4px);
+  color: black;
 }
