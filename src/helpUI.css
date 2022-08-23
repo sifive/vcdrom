@@ -12,7 +12,8 @@
   position: absolute;
   bottom: 2px;
   right: 15px;
-  background-color: rgb(262, 63, 78);
+  /* background-color: rgb(262, 63, 78); */
+  background-color: rgb(66, 66, 66);
   opacity: 0.9;
   text-align: center;
   color: rgb(229, 229, 229);
@@ -26,9 +27,9 @@
   color: black;
 }
 #helpButton:active {
-  background-color: rgb(202, 144, 238);
+  background-color: lightgreen;
   box-shadow: 7px 6px 28px 1px #1f1f1f;
-  transform: translateY(4px);
+  transform: translateY(-4px);
   color: black;
 }
 
@@ -54,7 +55,9 @@
 #openDiv.hide {
   opacity: 0;
 }
-
+#helpButton.show {
+  background-color: rgb(262, 63, 78);
+}
 .each_shortcut {
   display: flex;
   align-items: center;

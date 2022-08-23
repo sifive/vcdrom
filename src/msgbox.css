@@ -172,12 +172,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  min-width: 280px;
-  max-width: 550px;
+  width: 20%;
+  min-width: 230px;
+  max-width: 500px;
   height: auto;
-  background-color: #1f1f1f;
-  border-radius: 48px;
+  background-color: rgb(66, 66, 66);
+  border-radius: 28px;
   padding: 0;
   margin: 0;
   border: 3px solid rgb(262, 63, 78);
@@ -188,19 +188,25 @@
 }
 #ITitle {
   position: relative;
-  left: 30px;
+  font-size: 25px;
+  left: 15px;
 }
 
 input[type='text'] {
   width: 90%;
   border: 2px solid #aaa;
-  left: 30px;
+  left: 15px;
   position: relative;
   margin: 8px 0;
   outline: none;
   height: 37px;
   box-sizing: border-box;
   transition: 0.3s;
+}
+
+.inputText:hover {
+  cursor: pointer;
+  border-width: 20px;
 }
 
 input[type='text']:focus {
@@ -210,12 +216,12 @@ input[type='text']:focus {
 
 .buttons {
   position: relative;
-  left: 300px;
+  left: 135px;
 }
 .enterButton {
   position: relative;
   left: 50px;
-  width: 15%;
+  width: 20%;
   margin: 8px 0;
   border-radius: 38px;
   border: 2px solid #aaa;
