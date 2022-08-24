@@ -46,7 +46,7 @@
 }
 
 .status > div:hover {
-  background-color: lightgreen;
+  background-color: coral;
   color: black;
 }
 .status > div:active {
@@ -55,7 +55,7 @@
   transform: translateY(4px);
   color: black;
 }
-
+/* */
 .active {
   background-color: aqua;
 }
