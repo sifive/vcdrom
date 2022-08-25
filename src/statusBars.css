@@ -39,18 +39,18 @@
   width: 150px;
   vertical-align: middle;
   line-height: 30px;
-  background-color: rgb(262, 63, 78);
+  background-color: rgb(66, 66, 66);
   color: rgb(252, 252, 252);
   margin: 3px;
   border-radius: 48px;
   user-select: none;
 }
 .status > div:hover {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   color: black;
 }
 .status > div:active {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   box-shadow: 7px 6px 28px 1px #1f1f1f;
   transform: translateY(4px);
   color: black;
