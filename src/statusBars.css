@@ -46,11 +46,11 @@
   user-select: none;
 }
 .status > div:hover {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   color: black;
 }
 .status > div:active {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   box-shadow: 7px 6px 28px 1px #1f1f1f;
   transform: translateY(4px);
   color: black;
