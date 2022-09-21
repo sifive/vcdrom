@@ -6,8 +6,11 @@ module.exports = {
     node: true,
   },
   extends: 'eslint:recommended',
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 'latest',
+    sourceType: 'module',
+    allowImportExportEverywhere: true,
   },
   rules: {
     'prettier/prettier': 'error',

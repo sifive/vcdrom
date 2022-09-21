@@ -7,7 +7,8 @@
     "test": "eslint lib",
     "browserify": "browserify ./lib/vcdrom.js > app/vcdrom.js",
     "build": "browserify ./lib/vcdrom.js | terser --compress -o app/vcdrom.js",
-    "watch": "watchify ./lib/vcdrom.js -o app/vcdrom.js -v"
+    "watch": "watchify ./lib/vcdrom.js -o app/vcdrom.js -v",
+    "runD3": "browserify ./ceg/index.js"
   },
   "files": [
     "app/*.html",
@@ -31,6 +32,7 @@
     "@drom/eslint-config": "^0.10.0",
     "browserify": "^17.0.0",
     "codemirror": "^5.65.1",
+    "d3": "^6.7.0",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
