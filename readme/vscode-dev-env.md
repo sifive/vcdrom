@@ -57,7 +57,7 @@ Open a terminal and start chrome using this command:
 
 `google-chrome --remote-debugging-port=9222`
 
-The port number is not important or reserved, but this guide uses this port number consistently.  I suggest you do to for now.
+The port number is not important or reserved, but this guide uses this port number consistently. The committed launch configuration uses this port number.
 
 This will start Chrome, hopefully with a single blank tab.  I suggest always leaving a blank tab open, and closing any other tabs.  This will minimize debugger clutter and keep the debug instance of Chrome running even if you close all visualizers.
 
