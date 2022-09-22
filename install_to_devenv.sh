@@ -113,8 +113,8 @@ fi
 
 if [ "${doWebapp}" == "true" ]
 then
-    echo "Building vcdrom web app..."
-    ./build.sh
+    echo "Building vcdrom web app in debug mode..."
+    ./build.sh -d
 
     echo "Installing web app..."
     cp -r app/* ${workspace}/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0 

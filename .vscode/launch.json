@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Local Chrome Attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "pathMapping": {
+                "/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0/": "${workspaceFolder}",
+            }
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Remote Chrome Attach",
+            "port": 5656,
+            "address": "192.168.1.120",
+            "sourceMaps": true,
+            "pathMapping": {
+                "/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0/": "${workspaceFolder}",
+            }
+        }
+    ]
+}
