@@ -59,7 +59,13 @@ Open a terminal and start chrome using this command:
 
 The port number is not important or reserved, but this guide uses this port number consistently. The committed launch configuration uses this port number.
 
-This will start Chrome, hopefully with a single blank tab.  I suggest always leaving a blank tab open, and closing any other tabs.  This will minimize debugger clutter and keep the debug instance of Chrome running even if you close all visualizers.
+This will start Chrome, hopefully with a single blank tab (though you may need to sign into a profile to get thing going).  I suggest always leaving a blank tab open, and closing any other tabs.  This will minimize debugger clutter and keep the debug instance of Chrome running even if you close all visualizers.
+
+When Chrome starts you should see a message very much like this printed on the terminal:
+
+`DevTools listening on ws://127.0.0.1:9222/devtools/browser/cd0a8986-4980-45d3-a489-a0e59f3d05fe`
+
+This indicates that Chrome is ready to debugger attachment.  If, instead, you see a message indicating that Chrome is opening a new tab in an existing process, then you may have another Chrome process running already someplace on the system.  Try `killall google-chrome`.  If that kills any process, you can restart Chrome in debug mode again.  If you continue to see the "exiting process" message, you will likely need to reboot Linux, then try again.
 
 ### Connect Visual Studio Code to Chrome
 
