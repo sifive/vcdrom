@@ -46,7 +46,7 @@
             "port": 6000,
             "pathMappings": [
                 {
-                    "url": "http://127.0.0.1:*/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0/lib",
+                    "url": "http://*/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0/lib",
                     "path": "${workspaceFolder}/lib"
                 }
             ]
