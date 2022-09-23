@@ -38,6 +38,18 @@
             "pathMapping": {
                 "/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0/": "${workspaceFolder}",
             }
+        },
+        {
+            "type": "firefox",
+            "request": "attach",
+            "name": "Local Firefox Attach",
+            "port": 6000,
+            "pathMappings": [
+                {
+                    "url": "http://127.0.0.1:*/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0/lib",
+                    "path": "${workspaceFolder}/lib"
+                }
+            ]
         }
     ]
 }
