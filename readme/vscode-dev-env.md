@@ -116,6 +116,18 @@ You are on your own here.  You can set breakpoints, look at variables, etc...
 
 If you make any code modifications, you will need to invoke the build/install/debug loop to run the new code.
 
+### Firefox
+
+Although we currently emphasize Chrome support, it might be occasionally useful to debug an environment that uses Firefox as its default web browser.
+
+If that eventuality arists, then to set that up, install the Firefox debug extension to vccode (https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug).
+
+Open a terminal and start firefox using this command:
+
+`firefox --start-debugger-server`
+
+Then from vscode, use the launch configuration named "Local Firefox Attach"
+
 ## Helpful Links
 
 - https://stackoverflow.com/questions/65200278/vscode-settings-how-to-get-a-hostname-when-using-remote-ssh
