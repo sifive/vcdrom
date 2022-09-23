@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "chrome",
+            "request": "launch",
+            "name": "Local Linux Chrome Launch",
+            "runtimeExecutable": "/usr/bin/google-chrome",
+            "userDataDir": false,
+            "runtimeArgs": ["--remote-debugging-port=9222"],
+            "port": 9222,
+            "sourceMaps": true,
+            "pathMapping": {
+                "/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0/": "${workspaceFolder}",
+            }
+        },
+
+        {
+            "type": "chrome",
             "request": "attach",
             "name": "Local Chrome Attach",
             "port": 9222,
