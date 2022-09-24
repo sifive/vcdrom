@@ -1,21 +1,36 @@
+body {
+  background-color: #252525;
+  /* color: bisque; */
+}
+
 svg {
   font: 10px sans-serif;
+  color: white;
+  fill: white;
+}
+#mainBars:hover {
+  box-shadow: 0px 2px 8px 1px #25deaa;
 }
 
 .bar {
   fill: lightcoral;
+  /* fill: rgb(240, 91, 91); */
+  border: #fff;
   clip-path: url(#clip);
+  cursor: pointer;
+  box-shadow: 0px 2px 8px 1px rgb(240, 91, 91);
 }
 
 .subBar {
   fill: gray;
-  opacity: 0.5;
+  /* fill: white; */
+  /* opacity: 0.5; */
 }
 
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: white;
   shape-rendering: crispEdges;
 }
 
@@ -24,6 +39,8 @@ svg {
   fill: rgb(4, 230, 38);
   fill-opacity: 0.25;
   shape-rendering: crispEdges;
+  cursor: zoom-in;
+  /* .zoom-out {cursor: zoom-out;} */
 }
 
 /* tip styling */
