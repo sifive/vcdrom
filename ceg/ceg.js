@@ -388,13 +388,6 @@ let buildGraph = (dataUrl1) => {
     // sorting
 
     function change() {
-      console.log(
-        'these are the updated global variables',
-        updateBrush,
-        updatedData,
-        flag
-      );
-
       // data = updatedData;
       var x0 = x
         .domain(
@@ -402,10 +395,10 @@ let buildGraph = (dataUrl1) => {
             .sort(
               this.checked
                 ? function (a, b) {
-                    return b.duration - a.duration;
+                    return a.duration - b.duration;
                   }
                 : function (a, b) {
-                    return d3.ascending(a.duration, b.duration);
+                    return d3.descending(a.duration, b.duration);
                   }
             )
             .map(function (d) {
@@ -420,10 +413,11 @@ let buildGraph = (dataUrl1) => {
             .sort(
               this.checked
                 ? function (a, b) {
-                    return b.duration - a.duration;
+                    return a.duration - b.duration;
+                    // return b.duration - a.duration;
                   }
                 : function (a, b) {
-                    return d3.ascending(a.duration, b.duration);
+                    return d3.descending(a.duration, b.duration);
                   }
             )
             .map(function (d) {
