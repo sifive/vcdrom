@@ -1,5 +1,8 @@
-let buildGraph = (dataUrl1) => {
+let graphTitle = 'Experiment 1';
+
+let buildGraph = (dataUrl1, currentWidth) => {
   let exeKey = 'executions';
+  let experimentName = 'experimentName';
   let flag = 0;
 
   let updateBrush;
@@ -8,14 +11,20 @@ let buildGraph = (dataUrl1) => {
 
   d3.json(dataUrl1, function (error, data) {
     if (error) throw error;
+    console.log('this is data', data[experimentName]);
+
+    if (data.hasOwnProperty([experimentName])) {
+      graphTitle = data[experimentName];
+    }
+
     data = data[exeKey];
     let updatedData = data;
     // margins for both the bars
-    var margin = { top: 30, right: 30, bottom: 100, left: 60 },
-      margin2 = { top: 430, right: 30, bottom: 20, left: 60 },
-      width = window.innerWidth - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom,
-      height2 = 500 - margin2.top - margin2.bottom;
+    var margin = { top: 30, right: 40, bottom: 100, left: 60 },
+      margin2 = { top: 230, right: 40, bottom: 20, left: 60 },
+      width = currentWidth - margin.left - margin.right,
+      height = 300 - margin.top - margin.bottom,
+      height2 = 300 - margin2.top - margin2.bottom;
 
     // scales for both the bars
     var x = d3.scale.ordinal().rangeBands([0, width], 0.1),
@@ -71,7 +80,8 @@ let buildGraph = (dataUrl1) => {
       // .attr('y', margin.top + 10)
       // .attr('x', margin.left + 28)
       .attr('y', 4)
-      .attr('x', margin.top - 200)
+      // .attr('x', height)
+      .attr('x', margin.top - 150)
       // .attr('x', margin.left)
       .attr('dy', '.75em')
       .attr('transform', 'rotate(-90)')
@@ -87,7 +97,7 @@ let buildGraph = (dataUrl1) => {
       .attr('text-anchor', 'middle')
       .style('font-size', '16px')
       .style('text-decoration', 'underline')
-      .text('Experiment 1');
+      .text(graphTitle);
 
     // context is the draggable mini bar
     // focus is the bars
@@ -187,7 +197,7 @@ let buildGraph = (dataUrl1) => {
       .classed('subBar', true)
       .attr({
         height: function (d) {
-          return height2 - y2(d.duration);
+          return 0;
         },
         width: function (d) {
           return x.rangeBand();
@@ -197,6 +207,19 @@ let buildGraph = (dataUrl1) => {
         },
         y: function (d) {
           return y2(d.duration);
+        },
+      });
+
+    // subBars transition
+    subBars
+      .transition()
+      .duration(600)
+      .delay(function (d, i) {
+        return i * 7;
+      })
+      .attr({
+        height: function (d, i) {
+          return height2 - y2(d.duration);
         },
       });
 
@@ -219,7 +242,7 @@ let buildGraph = (dataUrl1) => {
       selected = x2.domain().filter(function (d) {
         return brush.extent()[0] <= x2(d) && x2(d) <= brush.extent()[1];
       });
-
+      console.log('this is brush extent', brush.extent());
       var start;
       var end;
 
@@ -317,6 +340,7 @@ let buildGraph = (dataUrl1) => {
 
       // update the global variable
       updateBrush = brush.extent();
+
       updatedData = data;
       flag = 0;
     }

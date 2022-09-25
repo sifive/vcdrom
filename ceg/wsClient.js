@@ -1,5 +1,6 @@
 let buildGraph = require('./ceg');
-let dataUrl1 = 'data/test_prime_20.json';
+// let dataUrl1 = 'data/test_prime_20.json';
+let dataUrl1 = 'data/test_prime_20_updated.json';
 let wsClient = () => {
   console.log('this is the web socket connection');
 
@@ -19,7 +20,8 @@ let wsClient = () => {
       'Message from c2 to c1 :X: & bar being built ',
       msg.data.toString()
     );
-    buildGraph.buildGraph(dataUrl1); // bar built by its module function
+    var currentWidth = window.innerWidth;
+    buildGraph.buildGraph(dataUrl1, currentWidth); // bar built by its module function
     // buildGraph.buildGraph(dataUrl1);
   };
 };

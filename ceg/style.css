@@ -1,12 +1,13 @@
 body {
   background-color: #252525;
-  /* color: bisque; */
+  color: bisque;
 }
 
 svg {
   font: 10px sans-serif;
   color: white;
   fill: white;
+  box-shadow: 0px 2px 8px 1px rgb(240, 91, 91);
 }
 #mainBars:hover {
   box-shadow: 0px 2px 8px 1px #25deaa;
@@ -18,7 +19,7 @@ svg {
   border: #fff;
   clip-path: url(#clip);
   cursor: pointer;
-  box-shadow: 0px 2px 8px 1px rgb(240, 91, 91);
+  box-shadow: 10px 2px 8px 1px rgb(240, 91, 91);
 }
 
 .subBar {
