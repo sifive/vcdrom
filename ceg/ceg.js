@@ -1,17 +1,17 @@
-let graphTitle = 'Experiment 1';
+let keyPress = require('./clickEvent');
 
+let graphTitle = 'Experiment 1';
+let defaultColor = 'lightcoral';
 let buildGraph = (dataUrl1, currentWidth) => {
   let exeKey = 'executions';
   let experimentName = 'experimentName';
   let flag = 0;
 
   let updateBrush;
-  // let dataUrl1 = 'data/test_prime_20.json';
-  // document.body.style.backgroundColor = '#000';
 
   d3.json(dataUrl1, function (error, data) {
     if (error) throw error;
-    console.log('this is data', data[experimentName]);
+    // console.log('this is data', data[experimentName]);
 
     if (data.hasOwnProperty([experimentName])) {
       graphTitle = data[experimentName];
@@ -169,6 +169,17 @@ let buildGraph = (dataUrl1, currentWidth) => {
           .transition('colorfade')
           .duration(250)
           .style('fill', 'lightcoral');
+      })
+      .on('click', function (d) {
+        console.log('i was clicked');
+        console.log(
+          'my data point is',
+          d3.select(this),
+          d.duration,
+          d.iteration
+        );
+        console.log('Iteration', d.iteration);
+        console.log('Duration', d.duration);
       });
 
     bars
@@ -242,7 +253,7 @@ let buildGraph = (dataUrl1, currentWidth) => {
       selected = x2.domain().filter(function (d) {
         return brush.extent()[0] <= x2(d) && x2(d) <= brush.extent()[1];
       });
-      console.log('this is brush extent', brush.extent());
+      // console.log('this is brush extent', brush.extent());
       var start;
       var end;
 
@@ -288,7 +299,7 @@ let buildGraph = (dataUrl1, currentWidth) => {
     }
 
     function update(data) {
-      console.log('updated data', data);
+      // console.log('updated data', data);
       x.domain(
         data.map(function (d) {
           return d.iteration;
@@ -346,7 +357,6 @@ let buildGraph = (dataUrl1, currentWidth) => {
     }
 
     function exit(data) {
-      console.log('i am at exit ');
       var bars = focus.selectAll('.bar').data(data);
       bars.exit().remove();
     }
@@ -404,7 +414,7 @@ let buildGraph = (dataUrl1, currentWidth) => {
           d3.select(this)
             .transition('colorfade')
             .duration(250)
-            .style('fill', 'lightcoral');
+            .style('fill', defaultColor);
         });
     }
 
@@ -495,8 +505,9 @@ let buildGraph = (dataUrl1, currentWidth) => {
     }
     // // buttons for programmatically brush tru the graph
     // d3.select('#sortAscending').on('click', change1);
-    d3.select('#programBrush').on('click', change1);
-    // sorting
+    // d3.select('#programBrush').on('click', change1);
+
+    // input for coloring
   });
   // end function
 };

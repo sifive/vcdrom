@@ -117,7 +117,7 @@ then
     ./build.sh
 
     echo "Installing web app..."
-    cp -r app/* ${workspace} 
+    cp -r app/* ${workspace}/.metadata/.plugins/com.sifive.freedomstudio.util/pvapp/1.0
     cp -r app/* ${dev_root_target}/app/
 fi
 

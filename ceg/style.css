@@ -3,6 +3,18 @@ body {
   color: bisque;
 }
 
+/* flex box components */
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.child {
+  flex: 1 0 auto; /* this is the key; consumes all available height */
+  background-color: #252525;
+  color: bisque;
+}
 svg {
   font: 10px sans-serif;
   color: white;

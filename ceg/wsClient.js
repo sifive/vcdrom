@@ -1,11 +1,13 @@
 let buildGraph = require('./ceg');
+let processMessage = require('./processMessage');
+
 // let dataUrl1 = 'data/test_prime_20.json';
-let dataUrl1 = 'data/test_prime_20_updated.json';
+let dataUrl1 = 'FunctionTimingData data/test_prime_20_updated.json';
+
+let sampleMessage =
+  'FunctionTimingData /home/kevinm/sifive/ws-multitap/x390v10c1_prime/experiments/experiment_O2/.cache/iteration-json/test_prime.json';
+
 let wsClient = () => {
-  console.log('this is the web socket connection');
-
-  // hostUrl = 'http://127.0.0.1:59316/cegIndex.html';
-
   const websocket = new WebSocket('ws://' + location.host);
 
   websocket.onopen = () => {
@@ -16,13 +18,17 @@ let wsClient = () => {
   websocket.onmessage = (msg) => {
     // on getting a message from FS
 
-    console.log(
-      'Message from c2 to c1 :X: & bar being built ',
-      msg.data.toString()
-    );
+    console.log('Message from web socket server :) : ', msg.data.toString());
+
     var currentWidth = window.innerWidth;
-    buildGraph.buildGraph(dataUrl1, currentWidth); // bar built by its module function
+    console.log('this is the current width', currentWidth);
+    buildGraph.buildGraph(
+      processMessage.processMessages(dataUrl1),
+      currentWidth
+    ); // bar built by its module function
     // buildGraph.buildGraph(dataUrl1);
+    // buildGraph.buildGraph(dataUrl1, currentWidth);
+    // buildGraph.buildGraph(dataUrl1, currentWidth);
   };
 };
 
