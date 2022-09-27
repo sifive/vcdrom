@@ -49,6 +49,9 @@ This guide assumes you have an FS workspace already setup with any projects you 
 
 ### Start Chrome in Remote Debug Mode
 
+I recommend using the CLI approach first just to ensure you get things working properly. Then consider using the "launch" launch configurations after that.  The CLI launch is better at communicating problems when getting things setup, or when things start going sideways.
+#### Launch from the CLI
+
 In order to attach Visual Studio Code to Chrome, Chrome needs to be started in remote debug mode.
 
 First ensure that no Chrome instances are running. This will ensure that FS does not use a running instance that is not running in debug mode.
@@ -67,11 +70,22 @@ When Chrome starts you should see a message very much like this printed on the t
 
 This indicates that Chrome is ready for debugger attachment.  If, instead, you see a message indicating that Chrome is opening a new tab in an existing process, then you may have another Chrome process running already someplace on the system.  Try `killall google-chrome`.  If that kills any process, you can restart Chrome in debug mode again.  If you continue to see the "exiting process" message, you will likely need to reboot Linux, then try again.
 
+#### Use the Local Launch Configs
+
+These configs obviate the need to launch Chrome from the command line in debug mode.  Making life just a bit easier.
+
+The following launch configuration are available:
+
+- Local Linux Chrome Launch
+
+These launch configurations will start (and manage) a fresh debuggable Chrome process using your default profile.
+
+
 ### Connect Visual Studio Code to Chrome
 
 - Open the Debug Panel in Visual Studio Code. It is the icon with the bug and play arrow.
-- At the top of the Debug Panel, select the `Local Chrome Attach` launch configuration.
-- Hit `F5` to start the debugger and attach to the running Chrome instance.
+- At the top of the Debug Panel, select your desired launch configuration.
+- Hit `F5` to start the debugger.
 
 Diagnose and fix any connection issues before moving on...
 
