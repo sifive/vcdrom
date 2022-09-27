@@ -12,7 +12,7 @@ let wsClient = () => {
 
   websocket.onopen = () => {
     console.log('websocket opened wow :)' + websocket.url);
-    websocket.send('this is a test message');
+    websocket.send('iam ceg');
   };
 
   websocket.onmessage = (msg) => {
