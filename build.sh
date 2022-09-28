@@ -28,6 +28,8 @@ cp src/msgbox.css app
 cp src/sifiveProgressBar.css app
 cp src/sifive-logo-white.png app
 
+cp pul/pul.html app
+
 if [ "${debug}" == "true" ]
 then
     # When debugging don't tersify and do generate source maps.
