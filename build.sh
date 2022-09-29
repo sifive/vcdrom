@@ -29,12 +29,15 @@ cp src/sifiveProgressBar.css app
 cp src/sifive-logo-white.png app
 
 cp pul/pul.html app
+cp pul/pul.css app
 
 if [ "${debug}" == "true" ]
 then
     # When debugging don't tersify and do generate source maps.
     ./node_modules/.bin/browserify -d ./lib/vcdrom.js >app/vcdrom.js
+    ./node_modules/.bin/browserify -d ./pul/pul.js >app/pul.js
 else
     ./node_modules/.bin/browserify ./lib/vcdrom.js | ./node_modules/.bin/terser --compress -o app/vcdrom.js
+    ./node_modules/.bin/browserify ./pul/pul.js | ./node_modules/.bin/terser --compress -o app/pul.js
 fi
 
