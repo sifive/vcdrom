@@ -1,5 +1,14 @@
+let buildGraph = require('./ceg');
+let checker = require('./checkForGraphs');
 let processMessages = (message) => {
-  return message.split(' ')[1];
+  msgArray = message.split(' ')[1];
+
+  // return msgArray;
+  console.log('this is the path', message);
+  // console.log('true');
+  checker.checkDom();
+
+  // buildGraph.buildGraph(msgArray, window.innerWidth);
 };
 
 module.exports = { processMessages };

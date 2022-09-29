@@ -10,12 +10,20 @@ let buildGraph = (dataUrl1, currentWidth) => {
   let updateBrush;
 
   d3.json(dataUrl1, function (error, data) {
-    if (error) throw error;
+    if (error) {
+      var newHTag = document.createElement('h4');
+      newHTag.innerHTML = 'Please Click On FS to Send in Data to Draw Graphs';
+      newHTag.setAttribute('id', 'dataReq');
+      // throw error;
+    }
     // console.log('this is data', data[experimentName]);
 
     if (data.hasOwnProperty([experimentName])) {
       graphTitle = data[experimentName];
     }
+    // removing h4 tag
+    let helpTag = document.getElementById('dataReq');
+    helpTag.remove();
 
     data = data[exeKey];
     let updatedData = data;
