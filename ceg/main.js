@@ -1,18 +1,13 @@
 // main js file
 // imports and requires
-let Client = require('./wsClient');
-let keyPress = require('./clickEvent');
-// buildGraph.buildGraph();
-
-console.log('this is the location', location.host);
-
-// window.addEventListener(
-//   'resize',
-//   function (event) {
-//     console.log('resizing');
-//     Client.wsClient();
-//   },
-//   true
-// );
+let Client = require('./wsClient.js');
 
 Client.wsClientInitialize();
+
+Client.sendMessage('C: hello test message for FS :)-test123334566');
+
+//? testing client like Kevin ws-endpoint
+// let newClient = require('./newClient.js');
+// newClient.ws.openws('opening test678292');
+// newClient.ws.sendcmd('test223345');
+// newClient.ws.getmsg();

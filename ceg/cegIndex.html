@@ -11,15 +11,59 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>CEG Graphs</h1>
-    <h4 id="dataReq">Please Click On FS to Send in Data to Draw Graphs</h4>
     <div class="parent">
-      <div class="child"><div id="cegGraph"></div></div>
+      <div class="child">
+        <nav role="navigation">
+          <div id="menuToggle">
+            <!--
+        A fake / hidden checkbox is used as click reciever,
+        so you can use the :checked selector on it.
+        -->
+            <input type="checkbox" />
+
+            <!--
+        Some spans to act as a hamburger.
+
+        They are acting like a real hamburger,
+        not that McDonalds stuff.
+        -->
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <!--
+        Too bad the menu has to be inside of the button
+        but hey, it's pure CSS magic.
+        -->
+            <ul id="menu">
+              <li><a href="#">CEG GRAPHS</a></li>
+              <li class="">
+                <div tabindex="0" class="onclick-menu">
+                  Experiments
+                  <ul class="onclick-menu-content">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>Sort values</li>
+              <li>X<input type="checkbox" /></li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- <h1>CEG Graphs</h1> -->
+        <h4 id="dataReq">Please Click In FS to Send in Data to Draw Graphs</h4>
+      </div>
+      <div class="child">
+        <div id="cegGraph"></div>
+      </div>
       <!-- <div class="child"><div id="cegGraph"></div></div> -->
       <!-- <div class="child"><div id="cegGraph"></div></div> -->
     </div>
     <!-- <div id="cegGraph"></div> -->
-    <label><input type="checkbox" /> Sort values</label>
+    <!-- <label><input type="checkbox" /> Sort values</label> -->
     <!-- <div id="buttonContainer"> -->
     <!-- <button id="programBrush">do this</button> -->
   </body>

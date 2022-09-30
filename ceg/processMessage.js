@@ -1,5 +1,4 @@
-let buildGraph = require('./ceg');
-let checker = require('./checkForGraphs');
+let checker = require('./checkForGraphs.js');
 let processMessages = (message) => {
   msgArray = message.split(' ')[1];
 
@@ -14,3 +13,5 @@ let processMessages = (message) => {
 module.exports = { processMessages };
 
 //TODO modify this process message for different cases like delete graph etc
+
+// main-->wsClient---> process message-->checkDom-->ceg ----> clickevent---wsClient

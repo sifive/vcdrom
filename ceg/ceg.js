@@ -1,18 +1,18 @@
-let keyPress = require('./clickEvent');
+let keyPress = require('./clickEvent.js');
+// let keyPress = require('./main');
+
+// wsC.wsClientInitialize('hello im sending over from graph builder');
 
 let graphTitle = 'Experiment 1';
 let defaultColor = 'lightcoral';
 let buildGraph = (dataUrl1, currentWidth) => {
   let exeKey = 'executions';
   let experimentName = 'experimentName';
-  let flag = 0;
-
-  let updateBrush;
 
   d3.json(dataUrl1, function (error, data) {
     if (error) {
       var newHTag = document.createElement('h4');
-      newHTag.innerHTML = 'Please Click On FS to Send in Data to Draw Graphs';
+      newHTag.innerHTML = 'Please Click In FS to Send in Data to Draw Graphs';
       newHTag.setAttribute('id', 'dataReq');
       // throw error;
     }
@@ -179,15 +179,7 @@ let buildGraph = (dataUrl1, currentWidth) => {
           .style('fill', 'lightcoral');
       })
       .on('click', function (d) {
-        console.log('i was clicked');
-        console.log(
-          'my data point is',
-          d3.select(this),
-          d.duration,
-          d.iteration
-        );
-        console.log('Iteration', d.iteration);
-        console.log('Duration', d.duration);
+        keyPress.onBarClicks(d);
       });
 
     bars
