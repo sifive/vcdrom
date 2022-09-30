@@ -1,4 +1,4 @@
-let c = require('./wsClient.js');
+let c = require('./wsUtil.js');
 
 let onBarClicks = (d) => {
   console.log('i was clicked');

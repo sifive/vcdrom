@@ -2,9 +2,11 @@
 // imports and requires
 let Client = require('./wsClient.js');
 
-Client.wsClientInitialize();
+const wsutil = require('./wsUtil.js');
 
-Client.sendMessage('C: hello test message for FS :)-test123334566');
+wsutil.init(Client.wsClientInitialize());
+
+wsutil.sendMessage('C: hello test message for FS :)-test123334566');
 
 //? testing client like Kevin ws-endpoint
 // let newClient = require('./newClient.js');
