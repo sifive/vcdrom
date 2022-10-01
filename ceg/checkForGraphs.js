@@ -1,4 +1,4 @@
-let buildGraph = require('./ceg.js');
+let buildGraph = require('./cegGraph.js');
 
 let checkDom = () => {
   if (document.getElementById('cegGraph').innerHTML === '') {
