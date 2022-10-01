@@ -4,8 +4,8 @@
 
 let Client = require('./wsClient.js');
 
-const wsutil = require('./wsUtil.js');
+const wsUtil = require('./wsUtil.js');
 
-wsutil.init(Client.wsClientInitialize());
+wsUtil.init(Client.wsClientInitialize());
 
-wsutil.sendMessage('C: hello test message for FS :)-test123334566');
+wsUtil.sendMessage('C: hello test message for FS :)-test123334566');

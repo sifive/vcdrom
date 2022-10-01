@@ -13,5 +13,3 @@ let processMessages = (message) => {
 module.exports = { processMessages };
 
 //TODO modify this process message for different cases like delete graph etc
-
-// main-->wsClient---> process message-->checkDom-->ceg ----> clickevent---wsClient

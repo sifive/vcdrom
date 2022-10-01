@@ -1,7 +1,4 @@
 let keyPress = require('./clickEvent.js');
-// let keyPress = require('./main');
-
-// wsC.wsClientInitialize('hello im sending over from graph builder');
 
 let graphTitle = 'Experiment 1';
 let defaultColor = 'lightcoral';
