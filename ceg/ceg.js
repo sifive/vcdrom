@@ -16,7 +16,6 @@ let buildGraph = (dataUrl1, currentWidth) => {
       newHTag.setAttribute('id', 'dataReq');
       // throw error;
     }
-    // console.log('this is data', data[experimentName]);
 
     if (data.hasOwnProperty([experimentName])) {
       graphTitle = data[experimentName];
