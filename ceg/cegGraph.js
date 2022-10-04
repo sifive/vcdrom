@@ -8,9 +8,9 @@ let buildGraph = (dataUrl1, currentWidth) => {
 
   d3.json(dataUrl1, function (error, data) {
     if (error) {
-      var newHTag = document.createElement('h4');
-      newHTag.innerHTML = 'Please Click In FS to Send in Data to Draw Graphs';
-      newHTag.setAttribute('id', 'dataReq');
+      // var newHTag = document.createElement('h4');
+      // newHTag.innerHTML = 'Please Click In FS to Send in Data to Draw Graphs';
+      // newHTag.setAttribute('id', 'dataReq');
       // throw error;
     }
 
@@ -18,8 +18,8 @@ let buildGraph = (dataUrl1, currentWidth) => {
       graphTitle = data[experimentName];
     }
     // removing h4 tag
-    let helpTag = document.getElementById('dataReq');
-    helpTag.remove();
+    // let helpTag = document.getElementById('dataReq');
+    // helpTag.remove();
 
     data = data[exeKey];
     let updatedData = data;

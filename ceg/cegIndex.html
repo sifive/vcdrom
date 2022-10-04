@@ -6,65 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CEG</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
-    <!-- <script src="https://d3js.org/d3.v6.js"></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script defer src="main.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="parent">
-      <div class="child">
-        <nav role="navigation">
-          <div id="menuToggle">
-            <!--
-        A fake / hidden checkbox is used as click reciever,
-        so you can use the :checked selector on it.
-        -->
-            <input type="checkbox" />
-
-            <!--
-        Some spans to act as a hamburger.
-
-        They are acting like a real hamburger,
-        not that McDonalds stuff.
-        -->
-            <span></span>
-            <span></span>
-            <span></span>
-
-            <!--
-        Too bad the menu has to be inside of the button
-        but hey, it's pure CSS magic.
-        -->
-            <ul id="menu">
-              <li><a href="#">CEG GRAPHS</a></li>
-              <li class="">
-                <div tabindex="0" class="onclick-menu">
-                  Experiments
-                  <ul class="onclick-menu-content">
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li>Sort values</li>
-              <li>X<input type="checkbox" /></li>
-            </ul>
-          </div>
-        </nav>
-
-        <!-- <h1>CEG Graphs</h1> -->
-        <h4 id="dataReq">Please Click In FS to Send in Data to Draw Graphs</h4>
-      </div>
-      <div class="child">
-        <div id="cegGraph"></div>
-      </div>
-      <!-- <div class="child"><div id="cegGraph"></div></div> -->
-      <!-- <div class="child"><div id="cegGraph"></div></div> -->
-    </div>
-    <!-- <div id="cegGraph"></div> -->
-    <!-- <label><input type="checkbox" /> Sort values</label> -->
-    <!-- <div id="buttonContainer"> -->
-    <!-- <button id="programBrush">do this</button> -->
+    <div class="site-brand" id="foo"></div>
+    <div id="mainCl" class="container"></div>
   </body>
 </html>

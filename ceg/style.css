@@ -21,7 +21,7 @@ svg {
   font: 10px sans-serif;
   color: white;
   fill: white;
-  box-shadow: 0px 2px 8px 1px rgb(240, 91, 91);
+  /* box-shadow: 0px 2px 8px 1px rgb(240, 91, 91); */
 }
 #mainBars:hover {
   box-shadow: 0px 2px 8px 1px #25deaa;
@@ -89,157 +89,139 @@ svg {
   left: 0;
 }
 
-/* hamburger menu */
+/* graph container's */
+/* Style the page: */
+body {
+  font-size: 10pt;
+  margin: 0;
+  padding: 0;
+  background-color: lightslategray;
+  margin: 5px;
+}
 
-a,
-div {
+/* Set items above the header: */
+.site-brand {
+  /* margin: 2em; */
+  text-align: center;
+  background-color: #000;
+  padding: 15px;
+  border-radius: 20px;
+  width: auto;
+  margin-bottom: 0.2em;
+  overflow-x: hidden;
+}
+
+/* Set your header design: */
+header {
+  position: sticky;
+  top: 0px;
+  background-color: #26272b;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  margin-top: 0;
+  height: 4em;
+  width: 100%;
+  text-align: right;
+  border-radius: 18px;
+  box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.smallerSiFiveLogo {
+  border-radius: 48px;
+}
+
+/* Set the layout of the menu: */
+.menu-item,
+.site-name {
+  display: inline-block;
+  margin: 1em 0.2em;
+  min-width: 6em;
+  text-align: center;
+  background-color: #26272b;
+  padding: 0.5em 1em;
+}
+
+/* Style the links: */
+.menu-item a {
+  color: #fff;
   text-decoration: none;
-  color: #232323;
-
-  transition: color 0.3s ease;
 }
 
-a:hover {
-  color: tomato;
+.menu-item:hover {
+  background-color: #1ccdca;
 }
 
-#menuToggle {
-  display: block;
-  position: relative;
-  top: 50px;
-  left: 50px;
-
-  z-index: 1;
-
-  -webkit-user-select: none;
-  user-select: none;
+/* Add a dropdown feature: */
+.dropdown {
+  display: inline-block;
 }
 
-#menuToggle input {
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: -7px;
-  left: -5px;
-
-  cursor: pointer;
-
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-
-  -webkit-touch-callout: none;
-}
-
-/*
-         * Just a quick hamburger
-         */
-#menuToggle span {
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-
-  background: #cdcdcd;
-  border-radius: 3px;
-
-  z-index: 1;
-
-  transform-origin: 4px 0px;
-
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-  /* background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease; */
-}
-
-#menuToggle span:first-child {
-  transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2) {
-  transform-origin: 0% 100%;
-}
-
-/*
-         * Transform all the slices of hamburger
-         * into a crossmark.
-         */
-#menuToggle input:checked ~ span {
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
-}
-
-/*
-         * But let's hide the middle one.
-         */
-#menuToggle input:checked ~ span:nth-last-child(3) {
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-/*
-         * Ohyeah and the last one should go the other direction
-         */
-#menuToggle input:checked ~ span:nth-last-child(2) {
-  transform: rotate(-45deg) translate(0, -1px);
-}
-
-/*
-         * Make this absolute positioned
-         * at the top left of the screen
-         */
-#menu {
-  position: absolute;
-  width: 300px;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
-
-  background: #ededed;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
-
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-}
-
-#menu li {
-  padding: 10px 0;
-  font-size: 22px;
-}
-
-/*
-         * And let's slide it in from the left
-         */
-#menuToggle input:checked ~ ul {
-  transform: none;
-}
-
-.onclick-menu:focus {
-  /* clicking on label should toggle the menu */
-  pointer-events: none;
-}
-
-.onclick-menu:focus .onclick-menu-content {
-  /*  opacity is 1 in opened state (see below) */
-  opacity: 1;
-  visibility: visible;
-  display: inherit;
-  /* don't let pointer-events affect descendant elements */
-  pointer-events: auto;
-}
-
-.onclick-menu-content {
-  /* use opacity to fake immediate toggle */
+.dropdown-content {
   display: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: visibility 0.5s;
+  position: absolute;
+  border: 1px solid #000;
+  margin: 0.5em 0 0 -1em;
+  color: #000;
+  background-color: #fff;
+  z-index: 1;
 }
-.onclick-menu-content li {
-  list-style: none;
+.dropdown-content a {
+  color: #000;
 }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style dropdown item display: */
+.dropdown-item {
+  display: block;
+  text-align: left;
+  margin: 0;
+  padding: 0.5em 1em 0.5em 1em;
+  min-width: 5.9em;
+}
+
+.dropdown-item:hover,
+.dropdown-item:hover a {
+  color: #baf0ef;
+  background-color: #a2a2a2;
+}
+
+/* Style the Main Content: */
+.site-name {
+  float: left;
+  margin: 3px;
+  /* padding-right: 1em; */
+  color: #181a1a;
+  border-radius: 48px;
+  /* height: auto; */
+  opacity: 80%;
+}
+.main-container {
+  margin-top: 2em;
+  padding: 1em;
+  line-height: 1.4em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.column {
+  /* flex: 1; */
+  /* box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24); */
+  margin: 5px;
+  color: white;
+  border-radius: 48px;
+  height: 300px;
+  text-align: center;
+  box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,
+    rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
+  border: 1px solid;
+  border-color: rgb(213, 220, 226) rgb(213, 220, 226) rgb(184, 194, 204);
+}
+
+/* ---- */
