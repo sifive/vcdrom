@@ -107,7 +107,7 @@ let buildPage = () => {
 
   // build the html columns
   $('#mainCl').append($('<div id="g" class="column">'));
-  $('#g').append($('<div id="cegGraph" class="column">'));
+  $('#g').append($('<div id="cegGraph">'));
   $('#mainCl').append($('<div  class="column">'));
   $('#mainCl').append($('<div  class="column">'));
   $('#mainCl').append($('<div  class="column">'));

@@ -1,29 +1,29 @@
+// file for event clicks
 let keyPress = require('./clickEvent.js');
 
 let graphTitle = 'Experiment 1';
 let defaultColor = 'lightcoral';
+
 let buildGraph = (dataUrl1, currentWidth) => {
   let exeKey = 'executions';
   let experimentName = 'experimentName';
 
   d3.json(dataUrl1, function (error, data) {
     if (error) {
-      // var newHTag = document.createElement('h4');
-      // newHTag.innerHTML = 'Please Click In FS to Send in Data to Draw Graphs';
-      // newHTag.setAttribute('id', 'dataReq');
-      // throw error;
+      // check for any errors where the file is not fed
     }
-
+    // just to check if the json file has a key with the experiment name
     if (data.hasOwnProperty([experimentName])) {
       graphTitle = data[experimentName];
     }
-    // removing h4 tag
-    // let helpTag = document.getElementById('dataReq');
-    // helpTag.remove();
 
+    // get the data which is within the key 'experimentName'
     data = data[exeKey];
+
     let updatedData = data;
+
     // margins for both the bars
+    // this sets margins for both smaller and larger bar graphs
     var margin = { top: 30, right: 40, bottom: 100, left: 60 },
       margin2 = { top: 230, right: 40, bottom: 20, left: 60 },
       width = currentWidth - margin.left - margin.right,
@@ -31,15 +31,19 @@ let buildGraph = (dataUrl1, currentWidth) => {
       height2 = 300 - margin2.top - margin2.bottom;
 
     // scales for both the bars
+    // x,y for the larger bar and x2.y2 for the smaller bars
+    // transform the data into visual scales which can build the start and end points for the axis(s)
     var x = d3.scale.ordinal().rangeBands([0, width], 0.1),
       x2 = d3.scale.ordinal().rangeBands([0, width], 0.1),
       y = d3.scale.linear().range([height, 0]),
       y2 = d3.scale.linear().range([height2, 0]);
 
+    // build the axis and specify where they should be positioned
     var xAxis = d3.svg.axis().scale(x).orient('bottom'),
       xAxis2 = d3.svg.axis().scale(x2).orient('bottom').tickValues([]), // this is why the tick values are not show in mini map
       yAxis = d3.svg.axis().scale(y).orient('left');
 
+    // The purpose of these portions of the script is to ensure that the data we ingest fits onto our graph correctly
     x.domain(
       data.map(function (d) {
         return d.iteration;
@@ -54,20 +58,25 @@ let buildGraph = (dataUrl1, currentWidth) => {
     x2.domain(x.domain());
     y2.domain(y.domain());
 
+    // initialize our brush for the d3
     var brush = d3.svg.brush().x(x2).on('brush', brushed);
 
+    // now select the div where you want to render the graph and then create a svg having some width and height
+    // the height and widths are derived from the margins defined earlier
     var svg = d3
       .select('#cegGraph')
       .append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);
 
+    // focus is the variable for the larger bar graph
     var focus = svg
       .append('g')
       .attr('class', 'focus')
+      // last attribute is where the graph should be placed within the svg defined above
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    // x axis label
+    // x axis text label
     svg
       .append('text') // text label for the x axis
       .attr(
@@ -103,22 +112,23 @@ let buildGraph = (dataUrl1, currentWidth) => {
       .style('text-decoration', 'underline')
       .text(graphTitle);
 
-    // context is the draggable mini bar
-    // focus is the bars
+    // context is the draggable mini bar graph
 
     var context = svg
       .append('g')
       .attr('class', 'context')
       .attr('transform', 'translate(' + margin2.left + ',' + margin2.top + ')');
 
+    // creates and returns a function that appends the SVG elements to display the axis. I
     focus
       .append('g')
       .attr('class', 'x axis')
       .attr('transform', 'translate(0,' + height + ')')
-      .call(xAxis);
+      .call(xAxis); //if you don't call the function that is returned, these x axis for example elements will not be added.
 
     focus.append('g').attr('class', 'y axis').call(yAxis);
 
+    // the tooltip is defined here
     tooltip = d3
       .select('body')
       .append('div')
@@ -132,7 +142,10 @@ let buildGraph = (dataUrl1, currentWidth) => {
       .style('color', '#fff')
       .text('a simple tooltip');
 
+    // ? unsure of this line need to check it
     var bars = focus.selectAll('.bar').data(data);
+
+    // the main bar graph is defined here
     bars
       .enter()
       .append('rect')
@@ -153,6 +166,7 @@ let buildGraph = (dataUrl1, currentWidth) => {
         },
       })
       // .style('fill', 'green')
+      // graph interactions like moving over it and clicking it
       .on('mouseover', function (d) {
         d3.select(this).style('fill', 'green');
         d3.select(this).style('box shadow', '0px 2px 8px 1px #25deaa;');
