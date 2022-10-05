@@ -4,7 +4,8 @@ let keyPress = require('./clickEvent.js');
 let graphTitle = 'Experiment 1';
 let defaultColor = 'lightcoral';
 
-let buildGraph = (dataUrl1, currentWidth) => {
+let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
+  console.log('this is the current div of the html', currentDiv);
   let exeKey = 'executions';
   let experimentName = 'experimentName';
 
@@ -64,7 +65,7 @@ let buildGraph = (dataUrl1, currentWidth) => {
     // now select the div where you want to render the graph and then create a svg having some width and height
     // the height and widths are derived from the margins defined earlier
     var svg = d3
-      .select('#cegGraph')
+      .select(currentDiv)
       .append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);

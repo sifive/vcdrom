@@ -52,18 +52,7 @@ let buildPage = () => {
       </div>
       <div class="menu-item dropdown">
         <a href="#">Experiment</a>
-        <div class="dropdown-content">
-          <div class="dropdown-item">
-            <a href="#graph1">1</a>
-          </div>
-          <div class="dropdown-item">
-            <a href="#graph2">2</a>
-          </div>
-          <div class="dropdown-item">
-            <a href="#graph3">3</a>
-          </div>
-          <div class="dropdown-item">
-            <a href="#graph4">4</a>
+        <div class="dropdown-content" id="experimentMenu">
           </div>
         </div>
       </div>
@@ -101,16 +90,6 @@ let buildPage = () => {
 
   var topElement = document.getElementById('foo');
 
-  // el.innerHTML = 'test';
-  // var div = document.getElementById('foo');
   insertAfter(topElement, cegHeader);
-
-  // build the html columns
-  $('#mainCl').append($('<div id="g" class="column">'));
-  $('#g').append($('<div id="cegGraph">'));
-  $('#mainCl').append($('<div  class="column">'));
-  $('#mainCl').append($('<div  class="column">'));
-  $('#mainCl').append($('<div  class="column">'));
-  // $(this).insertAfter($('[class^="content"]').last());
 };
 module.exports = { buildPage };

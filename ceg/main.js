@@ -1,6 +1,7 @@
 // main js file
 // imports and requires
-// TODO clean up names of variables and functions---[]
+
+globalThis.NumberOfFlexBoxes = 1;
 
 let Client = require('./wsClient.js');
 

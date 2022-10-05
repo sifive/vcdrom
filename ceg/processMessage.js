@@ -2,12 +2,11 @@ let checker = require('./checkForGraphs.js');
 let processMessages = (message) => {
   msgArray = message.split(' ')[1];
 
-  // return msgArray;
-  console.log('this is the path', message);
-  // console.log('true');
-  checker.checkDom();
+  console.log('this is the path', message.split(' ')[0]);
 
-  // buildGraph.buildGraph(msgArray, window.innerWidth);
+  if (message.split(' ')[0] === 'FunctionTimingData') {
+    checker.checkDom();
+  }
 };
 
 module.exports = { processMessages };
