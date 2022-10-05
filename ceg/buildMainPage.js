@@ -37,15 +37,6 @@ let buildPage = () => {
       <div class="menu-item dropdown">
         <a href="#">Sort</a>
         <div class="dropdown-content" id="sortMenu">
-          <div class="dropdown-item">
-            <label><input type="checkbox" /> Sort values 1</label>
-          </div>
-          <div class="dropdown-item">
-            <label><input type="checkbox" /> Sort values 2</label>
-          </div>
-          <div class="dropdown-item">
-            <label><input type="checkbox" /> Sort values 3</label>
-          </div>
         </div>
       </div>
       <div class="menu-item dropdown">

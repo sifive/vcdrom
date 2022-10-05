@@ -1,4 +1,4 @@
-let checker = require('./checkForGraphs.js');
+let checker = require('./updateAll.js');
 let processMessages = (message) => {
   msgArray = message.split(' ')[1];
 

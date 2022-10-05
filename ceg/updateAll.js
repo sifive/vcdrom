@@ -4,6 +4,7 @@ let builder = require('./buildComponents.js');
 let checkDom = () => {
   let re = builder.buildFlexbox();
   builder.buildMenuBox();
+  builder.buildSortMenu();
   let g = '#' + re;
   console.log('this si the flexbox div', g);
   // if (document.getElementById('cegGraph').innerHTML === '') {

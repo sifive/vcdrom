@@ -22,4 +22,17 @@ let buildMenuBox = () => {
       )
   );
 };
-module.exports = { buildFlexbox, buildMenuBox };
+
+let buildSortMenu = () => {
+  $('#sortMenu').append(
+    $('<div>')
+      .addClass('dropdown-item')
+      .append(
+        $('<a>')
+          .attr('href', 'cegGraph' + globalThis.NumberOfFlexBoxes)
+          .text('Sort' + '-' + globalThis.NumberOfFlexBoxes)
+      )
+  );
+};
+
+module.exports = { buildFlexbox, buildMenuBox, buildSortMenu };
