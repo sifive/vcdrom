@@ -28,14 +28,12 @@ let buildPage = () => {
   document.getElementsByClassName('site-brand')[0].appendChild(sifiveLogo);
   // };
 
-  // let buildSifiveLogo = () => {
   let cegHeader = document.createElement('header');
   cegHeader.className = 'headerClass';
-  // console.log(cegHeader);
+
   cegHeader.innerHTML = `<div class="menu-item">
         Empty 
       </div>
-
       <div class="menu-item dropdown">
         <a href="#">Sort</a>
         <div class="dropdown-content" id="sortMenu">
@@ -56,11 +54,9 @@ let buildPage = () => {
           </div>
         </div>
       </div>
-
       <div class="menu-item">
         <a href="#">About</a>
       </div>
-
       <div class="site-name">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +76,6 @@ let buildPage = () => {
         </svg>
       </div>`;
 
-  console.log(cegHeader);
   // document.body.appendChild(cegHeader);
   // // };
 
