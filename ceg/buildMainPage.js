@@ -33,12 +33,12 @@ let buildPage = () => {
   cegHeader.className = 'headerClass';
   // console.log(cegHeader);
   cegHeader.innerHTML = `<div class="menu-item">
-        <a href="#"><button id="ClickMe">Click me!</button></a>
+        Empty 
       </div>
 
       <div class="menu-item dropdown">
-        <a href="#">Experiment</a>
-        <div class="dropdown-content">
+        <a href="#">Sort</a>
+        <div class="dropdown-content" id="sortMenu">
           <div class="dropdown-item">
             <label><input type="checkbox" /> Sort values 1</label>
           </div>
