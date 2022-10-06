@@ -1,15 +1,16 @@
 let buildGraph = require('./cegGraph.js');
 let builder = require('./buildComponents.js');
+let storage = require('./storageDict.js');
 
-let checkDom = () => {
+let updatePage = () => {
   let re = builder.buildFlexbox();
   builder.buildMenuBox();
   builder.buildSortMenu();
   let g = '#' + re;
-  console.log('this si the flexbox div', g);
   // if (document.getElementById('cegGraph').innerHTML === '') {
+
   buildGraph.buildGraph(msgArray, window.innerWidth, g);
   globalThis.NumberOfFlexBoxes++;
 };
 
-module.exports = { checkDom };
+module.exports = { updatePage };

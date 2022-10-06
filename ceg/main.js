@@ -9,6 +9,8 @@ let Client = require('./wsClient.js');
 
 const wsUtil = require('./wsUtil.js');
 
+let resizer = require('./resizingGraph.js');
+
 let buildHtml = require('./buildMainPage.js');
 
 scroll.onScroll();
@@ -18,3 +20,4 @@ wsUtil.init(Client.wsClientInitialize());
 wsUtil.sendMessage('C: hello test message for FS :)-test123334566');
 
 buildHtml.buildPage();
+resizer.resizeGraphs();

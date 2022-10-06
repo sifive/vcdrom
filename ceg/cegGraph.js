@@ -1,14 +1,21 @@
 // file for event clicks
 let keyPress = require('./clickEvent.js');
+let storage = require('./storageDict.js');
 
 let graphTitle = 'Experiment 1';
 let defaultColor = 'lightcoral';
 
 let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
-  console.log('this is the current div of the html', currentDiv);
+  console.log(
+    'this is the current div of the html :)',
+    dataUrl1,
+    currentWidth,
+    currentDiv
+  );
   let exeKey = 'executions';
   let experimentName = 'experimentName';
 
+  console.log('this os the data', dataUrl1);
   d3.json(dataUrl1, function (error, data) {
     if (error) {
       // check for any errors where the file is not fed
@@ -21,6 +28,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     // get the data which is within the key 'experimentName'
     data = data[exeKey];
 
+    storage.storeInto(currentDiv, dataUrl1);
     let updatedData = data;
 
     // margins for both the bars
@@ -64,9 +72,17 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
 
     // now select the div where you want to render the graph and then create a svg having some width and height
     // the height and widths are derived from the margins defined earlier
+
+    // .attr("viewBox", `0 0 ${widthValue} ${heightValue}`)
+    // let widthValue = width + margin.left + margin.right;
+    // let heightValue = height + margin.top + margin.bottom;
+    let svgClass = currentDiv.substring(1) + 'svg';
     var svg = d3
       .select(currentDiv)
       .append('svg')
+      .attr('class', svgClass)
+      // .attr('preserveAspectRatio', 'xMinYMin meet')
+      // .attr('viewBox', `0 0 ${widthValue} ${heightValue}`);
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);
 

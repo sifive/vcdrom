@@ -5,7 +5,7 @@ let processMessages = (message) => {
   console.log('this is the path', message.split(' ')[0]);
 
   if (message.split(' ')[0] === 'FunctionTimingData') {
-    checker.checkDom();
+    checker.updatePage();
   }
 };
 
