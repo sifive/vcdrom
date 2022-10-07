@@ -441,7 +441,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         });
     }
 
-    d3.select('input').on('change', change);
+    d3.select(currentDiv + 'S').on('change', change);
     // sorting
 
     function change() {

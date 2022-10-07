@@ -11,6 +11,19 @@ let buildFlexbox = () => {
 
   return divId;
 };
+
+let buildCheckBox = (divId) => {
+  $('#' + divId).append(
+    $(document.createElement('input')).attr({
+      id: divId + 'S',
+      class: 'checkboxS',
+      name: 'myCheckbox',
+      value: 'myValue',
+      type: 'checkbox',
+    })
+  );
+};
+
 let buildMenuBox = () => {
   $('#experimentMenu').append(
     $('<div>')
@@ -35,4 +48,4 @@ let buildSortMenu = () => {
   );
 };
 
-module.exports = { buildFlexbox, buildMenuBox, buildSortMenu };
+module.exports = { buildFlexbox, buildMenuBox, buildSortMenu, buildCheckBox };
