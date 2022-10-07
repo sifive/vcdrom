@@ -1,6 +1,6 @@
 body {
   /* background-color: rgb(66, 66, 66); */
-  background-color: lightslategray;
+  background-color: #1c1b1b;
   color: bisque;
   margin: 0;
   padding: 0;
@@ -8,32 +8,18 @@ body {
 }
 
 /* flex box components */
-.parent {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-.child {
-  flex: 1 0 auto; /* this is the key; consumes all available height */
-  background-color: #252525;
-  color: bisque;
-}
+
 svg {
   font: 10px sans-serif;
   fill: white;
-  /* color: white; */
-  /* fill: white; */
-  /* color: white;
-  fill: white; */
-  /* box-shadow: 0px 2px 8px 1px rgb(240, 91, 91); */
 }
 #mainBars:hover {
   box-shadow: 0px 2px 8px 1px rgb(66, 66, 66);
 }
 
 .bar {
-  fill: lightcoral;
-  /* fill: rgb(240, 91, 91); */
+  /* fill: lightcoral; */
+  fill: #ff6666;
   border: #fff;
   clip-path: url(#clip);
   cursor: pointer;
@@ -41,7 +27,7 @@ svg {
 }
 
 .subBar {
-  fill: gray;
+  fill: lightslategray;
   /* fill: white; */
   /* opacity: 0.5; */
 }
@@ -55,8 +41,8 @@ svg {
 
 .brush .extent {
   stroke: #fff;
-  fill: rgb(4, 230, 38);
-  fill-opacity: 0.25;
+  fill: rgba(247, 247, 4, 0.859);
+  fill-opacity: 0.35;
   shape-rendering: crispEdges;
   cursor: zoom-in;
   /* .zoom-out {cursor: zoom-out;} */
@@ -95,41 +81,20 @@ svg {
 /* graph container's */
 
 /* Set items above the header: */
-.site-brand {
-  /* margin: 2em; */
-  text-align: center;
-  background-color: #26272b;
-  /* opacity: 40%; */
-  padding: 15px;
-  border-radius: 20px;
-  width: auto;
-  margin-bottom: 0.5em;
-  overflow-x: hidden;
-  transform: perspective(75em) rotateX(18deg);
-  filter: drop-shadow(0 0 0.5rem black);
-  box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,
-    rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
-  border: 1px solid;
-  border-color: rgb(213, 220, 226) rgb(213, 220, 226) rgb(184, 194, 204);
-}
 
 /* Set your header design: */
 header {
   position: sticky;
-  /* opacity: 60%; */
   top: 10px;
-  background-color: #26272b;
   font-family: sans-serif;
   text-transform: uppercase;
-  margin-top: 0;
-  height: 4em;
+  margin: 10px;
+  height: 3em;
   width: 100%;
   text-align: right;
-  border-radius: 18px;
-  box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,
-    rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
-  border: 1px solid;
-  border-color: rgb(213, 220, 226) rgb(213, 220, 226) rgb(184, 194, 204);
+  border-radius: 54px;
+  background: linear-gradient(225deg, #1c1b1b, #171717);
+  box-shadow: -5px 5px 0px #0a0a0a, 5px -5px 0px #2a2828;
 }
 
 .smallerSiFiveLogo {
@@ -207,30 +172,24 @@ header {
   margin: 15px;
   /* opacity: 50%; */
 }
-.main-container {
-  margin-top: 2em;
-  padding: 1em;
-  line-height: 1.4em;
-}
 
 .container {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 .column {
-  margin: 5px;
+  margin: 12px;
   color: white;
-  font: 10px sans-serif;
+  font: 8px sans-serif;
   fill: white;
-  border-radius: 48px;
-  height: 300px;
+  height: 200px;
   text-align: center;
-  box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,
-    rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
-  border: 1px solid;
-  border-color: rgb(213, 220, 226) rgb(213, 220, 226) rgb(184, 194, 204);
+  border-radius: 31px;
+  background: #1a1919;
+  box-shadow: inset -5px 5px 10px #100f0f, inset 5px -5px 10px #242323;
 }
 
 /* ---- */

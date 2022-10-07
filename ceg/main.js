@@ -19,5 +19,8 @@ wsUtil.init(Client.wsClientInitialize());
 
 wsUtil.sendMessage('C: hello test message for FS :)-test123334566');
 
-buildHtml.buildPage();
+// buildHtml.buildPage();
 resizer.resizeGraphs();
+
+// export FS_ROOTDIR=~/dev-root
+// export FS_WS=~/Desktop/fs-runtime

@@ -1,11 +1,10 @@
 let buildGraph = require('./cegGraph.js');
 let builder = require('./buildComponents.js');
-let storage = require('./storageDict.js');
 
 let updatePage = () => {
   let re = builder.buildFlexbox();
-  builder.buildMenuBox();
-  builder.buildSortMenu();
+  // builder.buildMenuBox();
+  // builder.buildSortMenu();
   let g = '#' + re;
   // if (document.getElementById('cegGraph').innerHTML === '') {
 
