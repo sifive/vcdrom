@@ -26,7 +26,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     // margins for both the bars
     // this sets margins for both smaller and larger bar graphs
     // this sets margins for both smaller and larger bar graphs
-    var margin = { top: 30, right: 60, bottom: 80, left: 60 },
+    var margin = { top: 50, right: 60, bottom: 80, left: 60 },
       margin2 = { top: 140, right: 60, bottom: 20, left: 60 },
       height = 200 - margin.top - margin.bottom,
       height2 = 200 - margin2.top - margin2.bottom,
@@ -170,6 +170,13 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         y: function (d) {
           return y(d.duration);
         },
+      })
+      .style('fill', function (d) {
+        if (d.duration <= 600) {
+          return 'yellow';
+        } else {
+          return defaultColor;
+        }
       })
       // .style('fill', 'green')
       // graph interactions like moving over it and clicking it
@@ -531,6 +538,27 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     // d3.select('#programBrush').on('click', change1);
 
     // input for coloring
+
+    let listenForThValue = (d3) => {
+      d3.select('#thValue').on('input', function () {
+        console.log(+this.value);
+        let Thr = +this.value;
+        // update the whole chart
+        // Update the bar if the item in data is modified and already linked to a .bar element
+        d3.selectAll('.bar')
+          .transition()
+          .duration(1000)
+          .style('fill', function (d) {
+            if (d.duration <= Thr) {
+              return 'yellow';
+            } else {
+              return defaultColor;
+            }
+          });
+      });
+    };
+
+    listenForThValue(d3);
   });
   // end function
 };
