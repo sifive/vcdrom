@@ -1,25 +1,13 @@
-// export FS_ROOTDIR=~/dev-root
-// export FS_WS=~/Desktop/fs-runtime
-
+// file for event clicks
 let keyPress = require('./clickEvent.js');
 let storage = require('./storageDict.js');
-let graphBuilder = require('./graphComponents/buildGraph.js');
 
 let graphTitle = 'Experiment 1';
 let defaultColor = '#FF6666';
 let exeKey = 'executions';
 let experimentName = 'experimentName';
 
-// this sets margins for both smaller and larger bar graphs
-var margin = { top: 30, right: 60, bottom: 80, left: 60 },
-  margin2 = { top: 140, right: 60, bottom: 20, left: 60 },
-  height = 200 - margin.top - margin.bottom,
-  height2 = 200 - margin2.top - margin2.bottom;
-
 let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
-  var width = currentWidth - margin.left - margin.right;
-  //
-
   d3.json(dataUrl1, function (error, data) {
     if (error) {
       // check for any errors where the file is not fed
@@ -33,25 +21,20 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     data = data[exeKey];
 
     storage.storeInto(currentDiv, dataUrl1);
-
     let updatedData = data;
 
-    let svgClass = currentDiv.substring(1) + 'svg';
+    // margins for both the bars
+    // this sets margins for both smaller and larger bar graphs
+    // this sets margins for both smaller and larger bar graphs
+    var margin = { top: 30, right: 60, bottom: 80, left: 60 },
+      margin2 = { top: 140, right: 60, bottom: 20, left: 60 },
+      height = 200 - margin.top - margin.bottom,
+      height2 = 200 - margin2.top - margin2.bottom,
+      width = currentWidth - margin.left - margin.right;
 
-    let actualWidth = width + margin.left + margin.right;
-    let actualHeight = height + margin.top + margin.bottom;
-
-    svg = graphBuilder.buildSvg(
-      currentDiv,
-      svgClass,
-      actualWidth,
-      actualHeight
-    );
-
-    // -----------------
-    focus = graphBuilder.buildFocusSvg(svg, margin);
-    context = graphBuilder.buildCSvg(svg, margin2);
-
+    // scales for both the bars
+    // x,y for the larger bar and x2.y2 for the smaller bars
+    // transform the data into visual scales which can build the start and end points for the axis(s)
     var x = d3.scale.ordinal().rangeBands([0, width], 0.1),
       x2 = d3.scale.ordinal().rangeBands([0, width], 0.1),
       y = d3.scale.linear().range([height, 0]),
@@ -62,6 +45,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       xAxis2 = d3.svg.axis().scale(x2).orient('bottom').tickValues([]), // this is why the tick values are not show in mini map
       yAxis = d3.svg.axis().scale(y).orient('left');
 
+    // The purpose of these portions of the script is to ensure that the data we ingest fits onto our graph correctly
     x.domain(
       data.map(function (d) {
         return d.iteration;
@@ -78,6 +62,25 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
 
     // initialize our brush for the d3
     var brush = d3.svg.brush().x(x2).on('brush', brushed);
+
+    // now select the div where you want to render the graph and then create a svg having some width and height
+    // the height and widths are derived from the margins defined earlier
+    let svgClass = currentDiv.substring(1) + 'svg';
+    var svg = d3
+      .select(currentDiv)
+      .append('svg')
+      .attr('class', svgClass)
+      // .attr('preserveAspectRatio', 'xMinYMin meet')
+      // .attr('viewBox', `0 0 ${widthValue} ${heightValue}`);
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom);
+
+    // focus is the variable for the larger bar graph
+    var focus = svg
+      .append('g')
+      .attr('class', 'focus')
+      // last attribute is where the graph should be placed within the svg defined above
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     // x axis text label
     svg
@@ -114,6 +117,13 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       .style('font-size', '16px')
       .style('text-decoration', 'underline')
       .text(graphTitle);
+
+    // context is the draggable mini bar graph
+
+    var context = svg
+      .append('g')
+      .attr('class', 'context')
+      .attr('transform', 'translate(' + margin2.left + ',' + margin2.top + ')');
 
     // creates and returns a function that appends the SVG elements to display the axis. I
     focus
@@ -273,6 +283,13 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
 
       var updatedData = data.slice(start, end);
 
+      console.log(
+        'the data is being sliced and this is the updated data',
+        updatedData
+      );
+
+      console.log('this is current svg of the data', svgClass);
+
       update(updatedData);
       enter(updatedData);
       exit(updatedData);
@@ -287,7 +304,6 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         .exponent(0.5);
 
       var brushValue = brush.extent()[1] - brush.extent()[0];
-
       if (brushValue === 0) {
         brushValue = width;
       }
