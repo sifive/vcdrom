@@ -11,7 +11,7 @@ body {
 
 svg {
   font: 10px sans-serif;
-  fill: white;
+  /* fill: white;  */
 }
 #mainBars:hover {
   box-shadow: 0px 2px 8px 1px rgb(66, 66, 66);
@@ -188,9 +188,7 @@ header {
 
 .column {
   margin: 12px;
-  color: white;
   font: 8px sans-serif;
-  fill: white;
   height: 200px;
   text-align: center;
   border-radius: 31px;
@@ -198,8 +196,39 @@ header {
   box-shadow: inset -5px 5px 10px #100f0f, inset 5px -5px 10px #242323;
 }
 
+.WhiteText,
+.axis {
+  fill: white;
+}
 /* ---- */
 .checkboxS {
   right: 0px;
   top: 0px;
+}
+
+.button_rect_text {
+  color: white;
+}
+.button_rect {
+  color: rgb(185, 24, 24);
+  fill: lightcoral;
+  border-radius: 45px;
+  background: linear-gradient(145deg, #1c1b1b, #171717);
+  box-shadow: 5px 5px 10px #0a0a0a, -5px -5px 10px #2a2828;
+}
+
+.button_rect:active {
+  box-shadow: 7px 6px 28px 1px #1f1f1f;
+  transform: translateY(4px);
+}
+
+.button_rect_text:active {
+  fill: lightseagreen;
+  box-shadow: 7px 6px 28px 1px #1f1f1f;
+  transform: translateY(4px);
+}
+
+.scale_button:hover rect {
+  fill: #00aa8d;
+  transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
 }

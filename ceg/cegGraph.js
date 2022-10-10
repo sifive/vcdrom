@@ -1,7 +1,10 @@
 // file for event clicks
+// .attr('class', 'WhiteText')
+
 let keyPress = require('./clickEvent.js');
 let storage = require('./storageDict.js');
-
+let Y_Label = 'Duration Cycles';
+let X_Label = 'Iterations';
 let graphTitle = 'Experiment 1';
 let defaultColor = '#FF6666';
 let exeKey = 'executions';
@@ -81,13 +84,14 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     // x axis text label
     svg
       .append('text') // text label for the x axis
+      .attr('class', 'WhiteText')
       .attr(
         'transform',
         'translate(' + width / 2 + ' ,' + (height + margin.bottom + 25) + ')'
       )
       .style('text-anchor', 'middle')
       .style('font', '14px times')
-      .text('Iterations');
+      .text(X_Label);
 
     // Add the text label for the Y axis
     svg
@@ -98,19 +102,21 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       // .attr('x', height)
       .attr('x', margin.top - 150)
       // .attr('x', margin.left)
+      .attr('class', 'WhiteText')
       .attr('dy', '.75em')
       .attr('transform', 'rotate(-90)')
       .style('text-anchor', 'middle')
       .style('font', '14px times')
-      .text('Duration Cycles');
+      .text(Y_Label);
 
     // title of the graph exp name
     svg
       .append('text')
+      .attr('class', 'WhiteText')
       .attr('x', width / 2)
       .attr('y', margin.top / 2)
       .attr('text-anchor', 'middle')
-      .style('font-size', '16px')
+      .style('font-size', '14px')
       .style('text-decoration', 'underline')
       .text(graphTitle);
 
@@ -150,6 +156,85 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         // stroke: 'white',
         'stroke-width': '1px',
       });
+
+    // --------
+
+    // vis is the main svg maybe>=?
+    var expl_text = svg
+      .append('g')
+      .attr('id', 'buttons_group')
+      .attr('transform', 'translate(' + 40 + ',' + 10 + ')');
+
+    // zoom button sizing
+    var button_width = 40,
+      button_height = 14,
+      button_padding = 10;
+
+    var button_data = ['Sort'];
+
+    var button_count = button_data.length - 1,
+      button_g_width =
+        button_count * button_width +
+        button_count * button_padding +
+        margin.right -
+        button_padding;
+
+    expl_text
+      .append('text')
+      .attr('class', 'zoomto_text')
+      .text('Menu')
+      .style('text-anchor', 'start')
+      // .attr('x', width)
+      // .attr('y', margin.top / 2)
+      .attr(
+        'transform',
+        'translate(' + (width - button_g_width - 55) + ',' + 14 + ')'
+      )
+      .style('opacity', '1');
+
+    var button = expl_text
+      .selectAll('g')
+      .data(button_data)
+      .enter()
+      .append('g')
+      .attr('class', 'scale_button')
+      .attr('transform', function (d, i) {
+        return (
+          'translate(' +
+          (width - button_g_width + i * button_width + i * button_padding) +
+          ',4)'
+        );
+      })
+      .style('opacity', '1');
+    button
+      .append('rect')
+      .attr('class', 'button_rect')
+      .attr('width', button_width)
+      .attr('height', button_height)
+      .attr('rx', 1)
+      .attr('ry', 1);
+
+    button
+      .append('text')
+      .attr('class', 'button_rect_text')
+      .attr('dy', button_height / 2 + 3)
+      .attr('dx', button_width / 2)
+      .style('text-anchor', 'middle')
+      .style('color', 'white')
+      .text(function (d) {
+        return d;
+      });
+
+    svg
+      .selectAll('.scale_button')
+      .style('cursor', 'pointer')
+      .on('click', console.log('working sort button'));
+
+    // $('.scale_button');
+    $('.scale_button').click(function () {
+      change();
+    });
+    // ---------
 
     // the tooltip is defined here
     tooltip = d3
@@ -461,10 +546,11 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
             .sort(
               this.checked
                 ? function (a, b) {
-                    return a.duration - b.duration;
+                    return b.duration - a.duration;
+                    // return a.duration - b.duration;
                   }
                 : function (a, b) {
-                    return d3.descending(a.duration, b.duration);
+                    return d3.ascending(a.duration, b.duration);
                   }
             )
             .map(function (d) {
@@ -479,11 +565,10 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
             .sort(
               this.checked
                 ? function (a, b) {
-                    return a.duration - b.duration;
-                    // return b.duration - a.duration;
+                    return b.duration - a.duration;
                   }
                 : function (a, b) {
-                    return d3.descending(a.duration, b.duration);
+                    return d3.ascending(a.duration, b.duration);
                   }
             )
             .map(function (d) {

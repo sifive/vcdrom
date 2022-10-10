@@ -5,7 +5,7 @@ let updatePage = () => {
   let re = builder.buildFlexbox();
   // builder.buildMenuBox();
   // builder.buildSortMenu();
-  builder.buildCheckBox(re);
+  // builder.buildCheckBox(re);
   let g = '#' + re;
   // if (document.getElementById('cegGraph').innerHTML === '') {
 
