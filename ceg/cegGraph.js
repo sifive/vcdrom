@@ -130,6 +130,27 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
 
     focus.append('g').attr('class', 'y axis').call(yAxis);
 
+    focus
+      .selectAll('line.horizontalGrid')
+      .data(y.ticks(6))
+      .enter()
+      .append('line')
+      .attr({
+        class: 'horizontalGrid',
+        x1: width,
+        x2: 1,
+        y1: function (d) {
+          return y(d);
+        },
+        y2: function (d) {
+          return y(d);
+        },
+        fill: 'none',
+        'shape-rendering': 'crispEdges',
+        // stroke: 'white',
+        'stroke-width': '1px',
+      });
+
     // the tooltip is defined here
     tooltip = d3
       .select('body')

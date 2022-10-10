@@ -39,6 +39,12 @@ svg {
   shape-rendering: crispEdges;
 }
 
+.horizontalGrid {
+  stroke: lightgray;
+  stroke-dasharray: 2, 2;
+  stroke-opacity: 0.4;
+}
+
 .brush .extent {
   stroke: #fff;
   fill: rgba(247, 247, 4, 0.859);
