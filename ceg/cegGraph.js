@@ -6,6 +6,8 @@ let graphTitle = 'Experiment 1';
 let defaultColor = '#FF6666';
 let exeKey = 'executions';
 let experimentName = 'experimentName';
+let X = 'iteration';
+let Y = 'duration';
 
 let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
   d3.json(dataUrl1, function (error, data) {
@@ -23,18 +25,12 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     storage.storeInto(currentDiv, dataUrl1);
     let updatedData = data;
 
-    // margins for both the bars
-    // this sets margins for both smaller and larger bar graphs
-    // this sets margins for both smaller and larger bar graphs
     var margin = { top: 50, right: 60, bottom: 80, left: 60 },
       margin2 = { top: 140, right: 60, bottom: 20, left: 60 },
       height = 200 - margin.top - margin.bottom,
       height2 = 200 - margin2.top - margin2.bottom,
       width = currentWidth - margin.left - margin.right;
 
-    // scales for both the bars
-    // x,y for the larger bar and x2.y2 for the smaller bars
-    // transform the data into visual scales which can build the start and end points for the axis(s)
     var x = d3.scale.ordinal().rangeBands([0, width], 0.1),
       x2 = d3.scale.ordinal().rangeBands([0, width], 0.1),
       y = d3.scale.linear().range([height, 0]),
@@ -48,13 +44,13 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     // The purpose of these portions of the script is to ensure that the data we ingest fits onto our graph correctly
     x.domain(
       data.map(function (d) {
-        return d.iteration;
+        return d[X];
       })
     );
     y.domain([
       0,
       d3.max(data, function (d) {
-        return d.duration;
+        return d[Y];
       }),
     ]);
     x2.domain(x.domain());
@@ -165,14 +161,14 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
           return x.rangeBand();
         },
         x: function (d) {
-          return x(d.iteration);
+          return x(d[X]);
         },
         y: function (d) {
-          return y(d.duration);
+          return y(d[Y]);
         },
       })
       .style('fill', function (d) {
-        if (d.duration <= 600) {
+        if (d[Y] <= 600) {
           return 'yellow';
         } else {
           return defaultColor;
@@ -184,9 +180,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         d3.select(this).style('fill', 'green');
         d3.select(this).style('box shadow', '0px 2px 8px 1px #25deaa;');
         tooltip
-          .html(
-            `<div>Duration: ${d.duration}</div><div>Iteration: ${d.iteration}</div>`
-          )
+          .html(`<div>Duration: ${d[Y]}</div><div>Iteration: ${d[X]}</div>`)
           .style('visibility', 'visible');
       })
       .on('mousemove', function () {
@@ -213,7 +207,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       })
       .attr({
         height: function (d, i) {
-          return height - y(d.duration);
+          return height - y(d[Y]);
         },
       });
 
@@ -237,10 +231,10 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
           return x.rangeBand();
         },
         x: function (d) {
-          return x2(d.iteration);
+          return x2(d[X]);
         },
         y: function (d) {
-          return y2(d.duration);
+          return y2(d[Y]);
         },
       });
 
@@ -253,7 +247,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       })
       .attr({
         height: function (d, i) {
-          return height2 - y2(d.duration);
+          return height2 - y2(d[Y]);
         },
       });
 
@@ -315,7 +309,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
           return i % tickValueMultiplier === 0;
         })
         .map(function (d) {
-          return d.iteration;
+          return d[X];
         });
 
       focus.select('.x.axis').call(xAxis.tickValues(filteredTickValues));
@@ -325,13 +319,13 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     function update(data) {
       x.domain(
         data.map(function (d) {
-          return d.iteration;
+          return d[X];
         })
       );
       y.domain([
         0,
         d3.max(data, function (d) {
-          return d.duration;
+          return d[Y];
         }),
       ]);
 
@@ -340,24 +334,22 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         .data(data)
         .attr({
           height: function (d, i) {
-            return height - y(d.duration);
+            return height - y(d[Y]);
           },
           width: function (d) {
             return x.rangeBand();
           },
           x: function (d) {
-            return x(d.iteration);
+            return x(d[X]);
           },
           y: function (d) {
-            return y(d.duration);
+            return y(d[Y]);
           },
         })
         .on('mouseover', function (d) {
           d3.select(this).style('fill', 'green');
           tooltip
-            .html(
-              `<div>Duration: ${d.duration}</div><div>Iteration: ${d.iteration}</div>`
-            )
+            .html(`<div>Duration: ${d[Y]}</div><div>Iteration: ${d[X]}</div>`)
             .style('visibility', 'visible');
         })
         .on('mousemove', function () {
@@ -377,7 +369,6 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       updateBrush = brush.extent();
 
       updatedData = data;
-      flag = 0;
     }
 
     function exit(data) {
@@ -389,19 +380,18 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       // create data scales and domain
       x.domain(
         data.map(function (d) {
-          return d.iteration;
+          return d[X];
         })
       );
       y.domain([
         0,
         d3.max(data, function (d) {
-          return d.duration;
+          return d[Y];
         }),
       ]);
 
       // build bars
       var bars = focus.selectAll('.bar').data(data);
-
       bars
         .enter()
         .append('rect')
@@ -414,18 +404,16 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
             return x.rangeBand();
           },
           x: function (d) {
-            return x(d.iteration);
+            return x(d[X]);
           },
           y: function (d) {
-            return y(d.duration);
+            return y(d[Y]);
           },
         })
         .on('mouseover', function (d) {
           d3.select(this).style('fill', 'green');
           tooltip
-            .html(
-              `<div>Duration: ${d.duration}</div><div>Iteration: ${d.iteration}</div>`
-            )
+            .html(`<div>Duration: ${d[Y]}</div><div>Iteration: ${d[X]}</div>`)
             .style('visibility', 'visible');
         })
         .on('mousemove', function () {
@@ -459,7 +447,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
                   }
             )
             .map(function (d) {
-              return d.duration;
+              return d[Y];
             })
         )
         .copy();
@@ -478,7 +466,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
                   }
             )
             .map(function (d) {
-              return d.duration;
+              return d[Y];
             })
         )
         .copy();
@@ -496,11 +484,10 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         .selectAll('.bar')
         .delay(delay)
         .attr('x', function (d) {
-          return x0(d.duration);
+          return x0(d[Y]);
         });
 
       // subBar;
-
       svg.selectAll('.subBar').sort(function (a, b) {
         return xSubBars(a.duration) - xSubBars(b.duration);
       });
@@ -514,7 +501,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         .selectAll('.subBar')
         .delay(delay)
         .attr('x', function (d) {
-          return xSubBars(d.duration);
+          return xSubBars(d[Y]);
         });
 
       transition.select('.x.axis').call(xAxis).delay(delay);
@@ -544,7 +531,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
           .transition()
           .duration(1000)
           .style('fill', function (d) {
-            if (d.duration <= Thr) {
+            if (d[Y] <= Thr) {
               return 'yellow';
             } else {
               return defaultColor;
@@ -561,36 +548,24 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       console.log('this is the current brush width', brush.extent());
       switch (evt.keyCode) {
         case 81: {
-          console.log('q is pressed');
           changeBrush(0, width);
-
           break;
         }
         case 83: {
           // ? reduce the zoom brush by 10 px of width
           console.log('s is pressed');
-          // get the current width of the brush
           changeBrush(brush.extent()[0] + 10, brush.extent()[1] - 10);
-
           break;
         }
         case 65: {
-          console.log('a is pressed');
           changeBrush(brush.extent()[0] - 10, brush.extent()[1] - 10);
-
           break;
         }
         case 68: {
-          console.log('d is pressed');
           changeBrush(brush.extent()[0] + 10, brush.extent()[1] + 10);
-
           break;
         }
         case 87: {
-          console.log('w is pressed');
-          // if (brush.extent()[0] - 10){
-
-          // }
           changeBrush(brush.extent()[0] - 10, brush.extent()[1] + 10);
           break;
         }
