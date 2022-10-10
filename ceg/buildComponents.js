@@ -6,7 +6,7 @@ let buildFlexbox = () => {
     $('<div>')
       .addClass('column')
       .attr('id', globalThis.NumberOfFlexBoxes)
-      .append($('<div>').attr('id', divId))
+      .append($('<div>').attr('id', divId).attr('tabindex', 0))
   );
 
   return divId;

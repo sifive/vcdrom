@@ -276,10 +276,11 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       selected = x2.domain().filter(function (d) {
         return brush.extent()[0] <= x2(d) && x2(d) <= brush.extent()[1];
       });
-      // console.log('this is brush extent', brush.extent());
+
       var start;
       var end;
 
+      console.log('this is brush extent', brush.extent()[0], brush.extent()[1]);
       if (brush.extent()[0] != brush.extent()[1]) {
         start = selected[0];
         end = selected[selected.length - 1] + 1;
@@ -289,13 +290,6 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       }
 
       var updatedData = data.slice(start, end);
-
-      console.log(
-        'the data is being sliced and this is the updated data',
-        updatedData
-      );
-
-      console.log('this is current svg of the data', svgClass);
 
       update(updatedData);
       enter(updatedData);
@@ -329,7 +323,6 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     }
 
     function update(data) {
-      // console.log('updated data', data);
       x.domain(
         data.map(function (d) {
           return d.iteration;
@@ -342,8 +335,9 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         }),
       ]);
 
-      var bars = focus.selectAll('.bar').data(data);
+      var bars = focus.selectAll('.bar');
       bars
+        .data(data)
         .attr({
           height: function (d, i) {
             return height - y(d.duration);
@@ -452,7 +446,6 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     // sorting
 
     function change() {
-      // data = updatedData;
       var x0 = x
         .domain(
           updatedData
@@ -526,16 +519,18 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
 
       transition.select('.x.axis').call(xAxis).delay(delay);
     }
-    function change1() {
-      brush.extent([0, 6]);
+    function changeBrush(first, end) {
+      if (0 >= first) {
+        first = 0;
+      }
+      if (end >= width) {
+        end = width;
+      }
 
-      brush(d3.select('.brush').transition());
-
-      brush.event(d3.select('.brush').transition().delay(1000));
+      brush.extent([first, end]);
+      brush(d3.select(currentDiv).select('.brush').transition());
+      brush.event(d3.select('.brush').transition().delay(800));
     }
-    // // buttons for programmatically brush tru the graph
-    // d3.select('#sortAscending').on('click', change1);
-    // d3.select('#programBrush').on('click', change1);
 
     // input for coloring
 
@@ -557,8 +552,50 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
           });
       });
     };
-
     listenForThValue(d3);
+
+    $(currentDiv).keydown(function (evt) {
+      evt = evt || window.event;
+
+      console.log('this is the inner width', width);
+      console.log('this is the current brush width', brush.extent());
+      switch (evt.keyCode) {
+        case 81: {
+          console.log('q is pressed');
+          changeBrush(0, width);
+
+          break;
+        }
+        case 83: {
+          // ? reduce the zoom brush by 10 px of width
+          console.log('s is pressed');
+          // get the current width of the brush
+          changeBrush(brush.extent()[0] + 10, brush.extent()[1] - 10);
+
+          break;
+        }
+        case 65: {
+          console.log('a is pressed');
+          changeBrush(brush.extent()[0] - 10, brush.extent()[1] - 10);
+
+          break;
+        }
+        case 68: {
+          console.log('d is pressed');
+          changeBrush(brush.extent()[0] + 10, brush.extent()[1] + 10);
+
+          break;
+        }
+        case 87: {
+          console.log('w is pressed');
+          // if (brush.extent()[0] - 10){
+
+          // }
+          changeBrush(brush.extent()[0] - 10, brush.extent()[1] + 10);
+          break;
+        }
+      }
+    });
   });
   // end function
 };
