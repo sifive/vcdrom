@@ -4,6 +4,7 @@
 let keyPress = require('./clickEvent.js');
 let storage = require('./storageDict.js');
 let client = require('./wsUtil.js');
+let s = require('./storageDict.js');
 
 let Y_Label = 'Duration Cycles';
 let X_Label = 'Iterations';
@@ -13,6 +14,7 @@ let exeKey = 'executions';
 let experimentName = 'experimentName';
 let X = 'iteration';
 let Y = 'duration';
+let widths = require('./widthBasedScale.js');
 let focusedData;
 
 let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
@@ -25,10 +27,18 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       graphTitle = data[experimentName];
     }
 
+    console.log(
+      'current width with others',
+      window.innerWidth,
+      currentWidth,
+      window.innerWidth - currentWidth
+    );
     // get the data which is within the key 'experimentName'
     data = data[exeKey];
 
+    widths.calculateWidth(currentDiv, data, dataUrl1);
     storage.storeInto(currentDiv, dataUrl1);
+
     let updatedData = data;
 
     var margin = { top: 50, right: 60, bottom: 80, left: 60 },
@@ -36,6 +46,12 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       height = 200 - margin.top - margin.bottom,
       height2 = 200 - margin2.top - margin2.bottom,
       width = currentWidth - margin.left - margin.right;
+
+    // ! for centering the graphs to the left
+    if (currentWidth < window.innerWidth) {
+      margin2.right = window.innerWidth - currentWidth;
+      margin.right = window.innerWidth - currentWidth;
+    }
 
     var x = d3.scale.ordinal().rangeBands([0, width], 0.1),
       x2 = d3.scale.ordinal().rangeBands([0, width], 0.1),
@@ -565,7 +581,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       brush.event(d3.select('.brush').transition().delay(800));
     }
 
-    $('#SortButton').click(function () {
+    $('#loadButton').click(function () {
       change();
       $(this).toggleClass('clicked');
     });
@@ -618,6 +634,21 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
           changeBrush(brush.extent()[0] - 10, brush.extent()[1] + 10);
           break;
         }
+      }
+    });
+
+    const checkbox = $('#brushSync');
+
+    checkbox.change(function (event) {
+      var checkbox = event.target;
+      if (checkbox.checked) {
+        let y = s.returnStorage();
+        for (const [key, value] of Object.entries(y)) {
+          console.log(key);
+        }
+      } else {
+        console.log('UN :)checked');
+        //Checkbox has been unchecked
       }
     });
   });

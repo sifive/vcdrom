@@ -19,6 +19,5 @@ cp src/sifive-logo-white.png app
 cp ceg/cegIndex.html app 
 cp ceg/style.css app 
 
-
 ./node_modules/.bin/browserify ./lib/vcdrom.js | ./node_modules/.bin/terser --compress -o app/vcdrom.js
 ./node_modules/.bin/browserify ./ceg/main.js > app/main.js 
