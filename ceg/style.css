@@ -6,6 +6,14 @@ body {
   padding: 0;
   margin: 5px;
 }
+.flex-parent {
+  display: flex;
+}
+
+.flex-item {
+  padding: 0.5em;
+  border: 3px solid #333;
+}
 
 /* flex box components */
 
@@ -193,7 +201,7 @@ header {
   text-align: center;
   border-radius: 31px;
   background: #1a1919;
-  box-shadow: inset -5px 5px 10px #100f0f, inset 5px -5px 10px #242323;
+  box-shadow: inset -3px 3px 7px #100f0f, inset 3px -3px 7px #100f0f;
 }
 
 .WhiteText,
@@ -231,4 +239,55 @@ header {
 .scale_button:hover rect {
   fill: #00aa8d;
   transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sortButton {
+  border: none;
+  padding: 0.7em 2em;
+  font-size: 10px;
+  font-family: inherit;
+  background-blend-mode: multiply;
+  color: rgb(235, 234, 234);
+  border-radius: 49px;
+  background: linear-gradient(225deg, #181818, #2e2e2e);
+  box-shadow: -5px 5px 10px #191919, 5px -5px 10px #292929;
+}
+
+.sortButton:hover {
+  background: #212121;
+  /* transition: background 1s ease; */
+  box-shadow: -5px 5px 10px #191919, 5px -5px 10px #292929;
+}
+
+.sortButton:active {
+  transition: box-shadow 0.1s ease;
+  border-radius: 9px;
+  background: #212121;
+  box-shadow: inset -5px 5px 10px #191919, inset 5px -5px 10px #292929;
+}
+
+span {
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.sortButton:hover span {
+  opacity: 0.7;
+}
+
+.clicked {
+  background: lightcoral;
+  color: #0a0a0a;
+  border-radius: 49px;
+}
+.nonClicked {
+  border: none;
+  padding: 0.7em 2em;
+  font-size: 10px;
+  font-family: inherit;
+  background-blend-mode: multiply;
+  color: rgb(235, 234, 234);
+  border-radius: 49px;
+  background: linear-gradient(225deg, #181818, #2e2e2e);
+  box-shadow: -5px 5px 10px #191919, 5px -5px 10px #292929;
 }

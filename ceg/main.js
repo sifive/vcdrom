@@ -17,8 +17,6 @@ scroll.onScroll();
 
 wsUtil.init(Client.wsClientInitialize());
 
-wsUtil.sendMessage('C: hello test message for FS :)-test123334566');
-
 // buildHtml.buildPage();
 resizer.resizeGraphs();
 

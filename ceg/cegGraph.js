@@ -3,6 +3,8 @@
 
 let keyPress = require('./clickEvent.js');
 let storage = require('./storageDict.js');
+let client = require('./wsUtil.js');
+
 let Y_Label = 'Duration Cycles';
 let X_Label = 'Iterations';
 let graphTitle = 'Experiment 1';
@@ -11,6 +13,7 @@ let exeKey = 'executions';
 let experimentName = 'experimentName';
 let X = 'iteration';
 let Y = 'duration';
+let focusedData;
 
 let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
   d3.json(dataUrl1, function (error, data) {
@@ -157,84 +160,8 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         'stroke-width': '1px',
       });
 
-    // --------
-
-    // vis is the main svg maybe>=?
-    var expl_text = svg
-      .append('g')
-      .attr('id', 'buttons_group')
-      .attr('transform', 'translate(' + 40 + ',' + 10 + ')');
-
-    // zoom button sizing
-    var button_width = 40,
-      button_height = 14,
-      button_padding = 10;
-
-    var button_data = ['Sort'];
-
-    var button_count = button_data.length - 1,
-      button_g_width =
-        button_count * button_width +
-        button_count * button_padding +
-        margin.right -
-        button_padding;
-
-    expl_text
-      .append('text')
-      .attr('class', 'zoomto_text')
-      .text('Menu')
-      .style('text-anchor', 'start')
-      // .attr('x', width)
-      // .attr('y', margin.top / 2)
-      .attr(
-        'transform',
-        'translate(' + (width - button_g_width - 55) + ',' + 14 + ')'
-      )
-      .style('opacity', '1');
-
-    var button = expl_text
-      .selectAll('g')
-      .data(button_data)
-      .enter()
-      .append('g')
-      .attr('class', 'scale_button')
-      .attr('transform', function (d, i) {
-        return (
-          'translate(' +
-          (width - button_g_width + i * button_width + i * button_padding) +
-          ',4)'
-        );
-      })
-      .style('opacity', '1');
-    button
-      .append('rect')
-      .attr('class', 'button_rect')
-      .attr('width', button_width)
-      .attr('height', button_height)
-      .attr('rx', 1)
-      .attr('ry', 1);
-
-    button
-      .append('text')
-      .attr('class', 'button_rect_text')
-      .attr('dy', button_height / 2 + 3)
-      .attr('dx', button_width / 2)
-      .style('text-anchor', 'middle')
-      .style('color', 'white')
-      .text(function (d) {
-        return d;
-      });
-
-    svg
-      .selectAll('.scale_button')
-      .style('cursor', 'pointer')
-      .on('click', console.log('working sort button'));
-
-    // $('.scale_button');
-    $('.scale_button').click(function () {
-      change();
-    });
-    // ---------
+    // -------------
+    // console.log(data);
 
     // the tooltip is defined here
     tooltip = d3
@@ -288,6 +215,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         tooltip
           .html(`<div>Duration: ${d[Y]}</div><div>Iteration: ${d[X]}</div>`)
           .style('visibility', 'visible');
+        focusedData = data[d.iteration];
       })
       .on('mousemove', function () {
         tooltip
@@ -300,10 +228,22 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
           .transition('colorfade')
           .duration(250)
           .style('fill', defaultColor);
-      })
-      .on('click', function (d) {
-        keyPress.onBarClicks(d);
+        focusedData = data[d.iteration];
       });
+
+    $(document).keydown(function (evt) {
+      evt = evt || window.event;
+      switch (evt.keyCode) {
+        case 86: {
+          keyPress.sendToPV(focusedData);
+          focusedData = undefined;
+        }
+        case 70: {
+          keyPress.sendToFV(focusedData);
+          focusedData = undefined;
+        }
+      }
+    });
 
     bars
       .transition()
@@ -536,7 +476,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
         });
     }
 
-    d3.select(currentDiv + 'S').on('change', change);
+    // d3.select(currentDiv + 'S').on('change', change);
     // sorting
 
     function change() {
@@ -625,7 +565,10 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       brush.event(d3.select('.brush').transition().delay(800));
     }
 
-    // input for coloring
+    $('#SortButton').click(function () {
+      change();
+      $(this).toggleClass('clicked');
+    });
 
     let listenForThValue = (d3) => {
       d3.select('#thValue').on('input', function () {
@@ -679,6 +622,14 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
     });
   });
   // end function
+
+  function highlight(obj) {
+    var orig = obj.style.color;
+    obj.style.color = 'red';
+    setTimeout(function () {
+      obj.style.color = orig;
+    }, 5000);
+  }
 };
 
 module.exports = { buildGraph };

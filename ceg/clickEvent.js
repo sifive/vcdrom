@@ -1,13 +1,17 @@
 let client = require('./wsUtil.js');
 
-let onBarClicks = (d) => {
-  console.log('i was clicked');
-  console.log('my data point is', d3.select(this), d.duration, d.iteration);
-
-  console.log('Iteration', d.iteration);
-  console.log('Duration', d.duration);
-
-  client.sendMessage('this is a click event from the graph' + d.duration);
+let sendToPV = (inputToSend) => {
+  if (inputToSend === undefined) {
+    console.log('working and finding out undefined');
+  } else {
+    console.log('Show in Pipeline Viewer', inputToSend);
+    client.sendMessage('Show in Pipeline Viewer' + inputToSend);
+  }
 };
 
-module.exports = { onBarClicks };
+let sendToFV = (inputToSend) => {
+  console.log('Show in Pipeline Utilization Explorer', inputToSend);
+  client.sendMessage('Show in Pipeline Utilization Explorer' + inputToSend);
+};
+
+module.exports = { sendToPV, sendToFV };
