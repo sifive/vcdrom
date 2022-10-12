@@ -5,7 +5,7 @@ let resizeGraphs = () => {
   $(window).on('resize', function () {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
-      $('#SortButton').toggleClass('sortButton');
+      // $('#SortButton').toggleClass('sortButton');
 
       let y = s.returnStorage();
       for (const [key, value] of Object.entries(y)) {

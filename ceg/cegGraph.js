@@ -581,7 +581,7 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       brush.event(d3.select('.brush').transition().delay(800));
     }
 
-    $('#loadButton').click(function () {
+    $('#SortButton').click(function () {
       change();
       $(this).toggleClass('clicked');
     });
