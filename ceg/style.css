@@ -21,6 +21,10 @@ svg {
   font: 10px sans-serif;
   /* fill: white;  */
 }
+
+.focus {
+  z-index: 10;
+}
 #mainBars:hover {
   box-shadow: 0px 2px 8px 1px rgb(66, 66, 66);
 }
@@ -290,4 +294,12 @@ span {
   border-radius: 49px;
   background: linear-gradient(225deg, #181818, #2e2e2e);
   box-shadow: -5px 5px 10px #191919, 5px -5px 10px #292929;
+}
+
+/* pane behind the main graphs */
+.pane {
+  /* cursor: move; fallback if grab cursor is unsupported */
+  /* cursor: grab; */
+  fill: rgb(39, 39, 40);
+  pointer-events: all;
 }

@@ -93,6 +93,24 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom);
 
+    // paneBehindTheGraph main graph
+    svg
+      .append('g')
+      .append('rect')
+      .attr('class', 'pane')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    // pane behind smaller graph
+    svg
+      .append('g')
+      .append('rect')
+      .attr('class', 'pane')
+      .attr('width', width)
+      .attr('height', height2)
+      .attr('transform', 'translate(' + margin2.left + ',' + margin2.top + ')');
+
     // focus is the variable for the larger bar graph
     var focus = svg
       .append('g')
@@ -181,7 +199,8 @@ let buildGraph = (dataUrl1, currentWidth, currentDiv) => {
 
     // the tooltip is defined here
     tooltip = d3
-      .select('body')
+      .select(currentDiv)
+      // .select('body')
       .append('div')
       .attr('class', 'd3-tooltip')
       .style('position', 'absolute')
