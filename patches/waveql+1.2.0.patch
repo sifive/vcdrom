@@ -30,3 +30,18 @@ index 315df78..bfd1e90 100644
    };
  
  };
+diff --git a/node_modules/waveql/lib/waveql-parser-with.js b/node_modules/waveql/lib/waveql-parser-with.js
+index ded1460..fdf4c1d 100644
+--- a/node_modules/waveql/lib/waveql-parser-with.js
++++ b/node_modules/waveql/lib/waveql-parser-with.js
+@@ -94,6 +94,10 @@ const waveqlParserWith = wires => str => {
+       if (col === '/')   { path.length = 0; return; }
+ 
+       mat = col.match(/^:(\S+)$/); if (mat) {
++        if (rowo.kind == 'vline') {
++          // remember the label token for coloring
++          rowo.label = mat[1];
++        }
+         labelo[mat[1]] = rowo;
+         return;
+       }
