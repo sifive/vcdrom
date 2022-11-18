@@ -13,12 +13,6 @@ if ! [ -d node_modules ]; then
     npm i
 fi
 
-if ! [ -d ../doppler/node_modules ]; then
-    pushd ../doppler
-    npm i
-    popd
-fi
-
 mkdir -p app
 
 cp node_modules/vcd-stream/out/vcd.wasm app
