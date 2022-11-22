@@ -20,6 +20,7 @@ cp node_modules/vcd-stream/out/vcd.wasm app
 cp -r src/favicon app
 cp src/pv.html app/index.html
 cp src/*.woff2 app
+cp src/*.css app
 
 
 if [ "${debug}" == "true" ]
