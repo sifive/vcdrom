@@ -36,6 +36,7 @@
     "http-server": "^14.1.0",
     "nodemon": "^2.0.20",
     "onml": "^2.1.0",
+    "patch-package": "^6.5.0",
     "style-mod": "^4.0.0",
     "terser": "^5.15.0",
     "vcd-stream": "^1.3.0",
