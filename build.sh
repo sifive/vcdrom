@@ -17,6 +17,10 @@ mkdir -p app
 
 cp node_modules/vcd-stream/out/vcd.wasm app
 
+./node_modules/.bin/markdown-to-html -s src/help.md \
+  -o app/help.html \
+  --title "SiFive Freedom Studio Pipeline Viewer Help" \
+  
 cp -r src/favicon app
 cp src/pv.html app/index.html
 cp src/*.woff2 app
