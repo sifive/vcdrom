@@ -1,16 +1,23 @@
 #!/bin/bash
 debug=false
+donpm=false
+npmcmd="i"
 
-while getopts dj flag
+while getopts djnN flag
 do
     case "${flag}" in
-        d) 
-            debug=true ;;
+        d) debug=true ;;
+        n) 
+            donpm=true
+            npmcmd="i" ;;
+        N) 
+            donpm=true
+            npmcmd="update" ;;
     esac
 done
 
-if ! [ -d node_modules ]; then
-    npm i
+if ! [ -d node_modules ] || ${donpm} ; then
+    npm ${npmcmd}
 fi
 
 mkdir -p app
