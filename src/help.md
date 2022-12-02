@@ -33,7 +33,8 @@
 ## SiFive Customer Support (requires login)
 
 The embedded Freedom Studio browser does not support user profiles.  This means that you will need to login every time
-you click links in this section.  For a better experience, you can drag these links to your normal preferred system browser where
+you click links in this section (you're login credentials will not be saved upon closing the help window).  
+For a better experience, you can drag these links to your normal preferred system browser where
 your login will be persisted across sessions.
 
 [SiFive Customer Portal](https://sifive.atlassian.net/servicedesk/customer/portal/47/article/465732086?src=-88580917)
