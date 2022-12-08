@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 debug=false
 donpm=false
 npmcmd="i"
