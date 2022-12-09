@@ -40,7 +40,7 @@ then
     # When debugging don't tersify and do generate source maps.
     ./node_modules/.bin/browserify -d ./lib/pv2.js >app/vcdrom.js
 else
-    ./node_modules/.bin/browserify ./lib/vcdrom.js | ./node_modules/.bin/terser --compress -o app/vcdrom.js
+    ./node_modules/.bin/browserify ./lib/pv2.js | ./node_modules/.bin/terser --compress -o app/vcdrom.js
 fi
 
 
