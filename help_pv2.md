@@ -29,6 +29,37 @@
 | <kbd>Ctrl</kbd> + 🖱️⬆️-wheel | time zoom in (around the cursor) |
 | <kbd>Ctrl</kbd> + 🖱️⬇️-wheel | time zoom out (around the cursor) |
 
+
+## Cursors
+
+Cursors allow you to mark interesting places in the simulation, and to
+easily measure time and cycles between two points.  Cursors are defined in the waveql text (on the left edge of the viewer).  This text is persisted between viewer sessions so you will not lose defined cursors when the viewer is closed.
+
+### The Mouse Click Cursor
+
+When you click the left mouse button at any point in the simulation a white "click" cursor is placed at that location.  If you click at another location, the click cursor is moved to the new location.
+
+Click cursors are defined in the waveql file as "@(time-val).x"   Where the .x makes this a special "click" cursor.  
+
+When you click in the simulation you will see the time value of this
+cursor updated.
+
+### Creating Cursors
+
+You can convert a "click" cursor into a persistent cursor by changing it's color designator from ".x" to any other color.  You can do this by editing the cursor text, or in Freedom Studio.
+
+You can create as many cursors as needed.
+
+### Editing Cursors
+
+You can edit both the time and color by editing the waveql text.  The cursor markers will update automatically in the viewer, in Freedom Studio, and in any other opened viewers.
+
+### Removing Cursors
+
+Remove a cursor by simply deleting the appropriate cursor line from the waveql editor text.
+
+You can also delete cursors from the Experiment Control Panel in Freedom Studio.
+
 ## SiFive Customer Support (requires login)
 
 The embedded Freedom Studio browser does not support user profiles.  This means that you will need to login every time
