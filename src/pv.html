@@ -35,8 +35,13 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="vcdrom.css" />
     <link rel="stylesheet" href="sifiveProgressBar.css" />
+    <style>
+      @font-face {
+        font-family: Iosevka;
+        src: url('./iosevka-term-light.woff2') format('woff2')
+      }   
+    </style>
     <script src="vcdrom.js"></script>
   </head>
   <body onload="VCDrom('waveform1')">
