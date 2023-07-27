@@ -20,6 +20,10 @@
 | <kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>.</kbd> | scroll to the future by 1 screen |
 | <kbd>Shift</kbd> <kbd>Alt</kbd> <kbd>.</kbd> | scroll to the future by 1 inst block|
 |||
+| <kbd>Alt</kbd> <kbd>j</kbd> | step cursor backward one inst cycle |
+| <kbd>Alt</kbd> <kbd>k</kbd> | center cursor and inst on screen |
+| <kbd>Alt</kbd> <kbd>l</kbd> | step cursor forward one inst cycle |
+|||
 | <kbd>Alt</kbd> <kbd>[</kbd> | scroll to the beginning of time |
 | <kbd>Alt</kbd> <kbd>]</kbd> | scroll to the end of time |
 |||
