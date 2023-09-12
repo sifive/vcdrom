@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/wavedrom/vcdrom/issues"
   },
-  "homepage": "https://github.com/wavedrom/vcdrom#readme",
+  "homepage": "https://github.com/sifive/vcdrom#readme",
   "devDependencies": {
     "@drom/eslint-config": "^0.12.0",
     "@wavedrom/doppler": "^1.8.1",
